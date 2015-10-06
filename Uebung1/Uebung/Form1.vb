@@ -4,8 +4,40 @@
     End Sub
 
     Private Sub Button_Start_Click(sender As Object, e As EventArgs) Handles Button_Start.Click
-
+        MessageBox.Show(GenerateMessage())
     End Sub
+
+
+    Private Function GenerateMessage() As String
+        Dim myAL As New ArrayList()
+        myAL.Add(CheckBox_PunktNr)
+        myAL.Add(CheckBox_XKord)
+        myAL.Add(CheckBox_YKord)
+        myAL.Add(CheckBox_ZKord)
+
+        Dim obj As Object
+        Dim message As String
+        message = "Ausgabe von "
+
+        Dim isNotFirst As Boolean
+        isNotFirst = False
+
+        For Each obj In myAL
+            Dim tbox As CheckBox
+            tbox = CType(obj, CheckBox)
+            If tbox.Checked Then
+                If isNotFirst Then
+                    message += " + "
+                Else
+                    isNotFirst = True
+                End If
+                message += tbox.Text
+            End If
+        Next
+        Return message
+    End Function
+
+
 
     Private Sub GetAndSetTarget()
         If RadioButton_Datei.Checked Then
