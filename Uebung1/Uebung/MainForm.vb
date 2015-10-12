@@ -60,4 +60,8 @@
     Private Sub RadioButton_Drucker_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_Drucker.CheckedChanged
         GetAndSetTarget()
     End Sub
+
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        GetAndSetTarget()
+    End Sub
 End Class

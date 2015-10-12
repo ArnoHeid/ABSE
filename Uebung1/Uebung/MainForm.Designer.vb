@@ -112,7 +112,6 @@ Partial Class MainForm
         Me.RadioButton_Drucker.Name = "RadioButton_Drucker"
         Me.RadioButton_Drucker.Size = New System.Drawing.Size(63, 17)
         Me.RadioButton_Drucker.TabIndex = 2
-        Me.RadioButton_Drucker.TabStop = True
         Me.RadioButton_Drucker.Text = "Drucker"
         Me.RadioButton_Drucker.UseVisualStyleBackColor = True
         '
@@ -123,13 +122,13 @@ Partial Class MainForm
         Me.RadioButton_Monitor.Name = "RadioButton_Monitor"
         Me.RadioButton_Monitor.Size = New System.Drawing.Size(60, 17)
         Me.RadioButton_Monitor.TabIndex = 1
-        Me.RadioButton_Monitor.TabStop = True
         Me.RadioButton_Monitor.Text = "Monitor"
         Me.RadioButton_Monitor.UseVisualStyleBackColor = True
         '
         'RadioButton_Datei
         '
         Me.RadioButton_Datei.AutoSize = True
+        Me.RadioButton_Datei.Checked = True
         Me.RadioButton_Datei.Location = New System.Drawing.Point(6, 19)
         Me.RadioButton_Datei.Name = "RadioButton_Datei"
         Me.RadioButton_Datei.Size = New System.Drawing.Size(50, 17)
@@ -161,6 +160,7 @@ Partial Class MainForm
         '
         Me.TextBox_Target.Location = New System.Drawing.Point(99, 65)
         Me.TextBox_Target.Name = "TextBox_Target"
+        Me.TextBox_Target.ReadOnly = True
         Me.TextBox_Target.Size = New System.Drawing.Size(100, 20)
         Me.TextBox_Target.TabIndex = 4
         Me.TextBox_Target.Text = "Ziel fehlt"
