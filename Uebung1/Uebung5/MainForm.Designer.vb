@@ -300,7 +300,7 @@ Partial Class MainForm
         Me.Button_OK_Order.Name = "Button_OK_Order"
         Me.Button_OK_Order.Size = New System.Drawing.Size(75, 23)
         Me.Button_OK_Order.TabIndex = 13
-        Me.Button_OK_Order.Text = "Button1"
+        Me.Button_OK_Order.Text = "OK / Order"
         Me.Button_OK_Order.UseVisualStyleBackColor = True
         '
         'GroupBox_geld
@@ -330,7 +330,7 @@ Partial Class MainForm
         Me.Button_Geld_Kom.Name = "Button_Geld_Kom"
         Me.Button_Geld_Kom.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_Kom.TabIndex = 11
-        Me.Button_Geld_Kom.Text = "Button13"
+        Me.Button_Geld_Kom.Text = ","
         Me.Button_Geld_Kom.UseVisualStyleBackColor = True
         '
         'Button_Geld_9
@@ -339,7 +339,7 @@ Partial Class MainForm
         Me.Button_Geld_9.Name = "Button_Geld_9"
         Me.Button_Geld_9.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_9.TabIndex = 10
-        Me.Button_Geld_9.Text = "Button12"
+        Me.Button_Geld_9.Text = "9"
         Me.Button_Geld_9.UseVisualStyleBackColor = True
         '
         'Button_Geld_6
@@ -348,7 +348,7 @@ Partial Class MainForm
         Me.Button_Geld_6.Name = "Button_Geld_6"
         Me.Button_Geld_6.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_6.TabIndex = 9
-        Me.Button_Geld_6.Text = "Button11"
+        Me.Button_Geld_6.Text = "6"
         Me.Button_Geld_6.UseVisualStyleBackColor = True
         '
         'Button_Geld_3
@@ -357,7 +357,7 @@ Partial Class MainForm
         Me.Button_Geld_3.Name = "Button_Geld_3"
         Me.Button_Geld_3.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_3.TabIndex = 8
-        Me.Button_Geld_3.Text = "Button10"
+        Me.Button_Geld_3.Text = "3"
         Me.Button_Geld_3.UseVisualStyleBackColor = True
         '
         'Button_Geld_0
@@ -366,7 +366,7 @@ Partial Class MainForm
         Me.Button_Geld_0.Name = "Button_Geld_0"
         Me.Button_Geld_0.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_0.TabIndex = 7
-        Me.Button_Geld_0.Text = "Button9"
+        Me.Button_Geld_0.Text = "0"
         Me.Button_Geld_0.UseVisualStyleBackColor = True
         '
         'Button_Geld_8
@@ -375,7 +375,7 @@ Partial Class MainForm
         Me.Button_Geld_8.Name = "Button_Geld_8"
         Me.Button_Geld_8.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_8.TabIndex = 6
-        Me.Button_Geld_8.Text = "Button8"
+        Me.Button_Geld_8.Text = "8"
         Me.Button_Geld_8.UseVisualStyleBackColor = True
         '
         'Button_Geld_5
@@ -384,7 +384,7 @@ Partial Class MainForm
         Me.Button_Geld_5.Name = "Button_Geld_5"
         Me.Button_Geld_5.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_5.TabIndex = 5
-        Me.Button_Geld_5.Text = "Button7"
+        Me.Button_Geld_5.Text = "5"
         Me.Button_Geld_5.UseVisualStyleBackColor = True
         '
         'Button_Geld_2
@@ -393,7 +393,7 @@ Partial Class MainForm
         Me.Button_Geld_2.Name = "Button_Geld_2"
         Me.Button_Geld_2.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_2.TabIndex = 4
-        Me.Button_Geld_2.Text = "Button6"
+        Me.Button_Geld_2.Text = "2"
         Me.Button_Geld_2.UseVisualStyleBackColor = True
         '
         'Button_Geld_Del
@@ -402,7 +402,7 @@ Partial Class MainForm
         Me.Button_Geld_Del.Name = "Button_Geld_Del"
         Me.Button_Geld_Del.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_Del.TabIndex = 3
-        Me.Button_Geld_Del.Text = "Button5"
+        Me.Button_Geld_Del.Text = "del"
         Me.Button_Geld_Del.UseVisualStyleBackColor = True
         '
         'Button_Geld_7
@@ -411,7 +411,7 @@ Partial Class MainForm
         Me.Button_Geld_7.Name = "Button_Geld_7"
         Me.Button_Geld_7.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_7.TabIndex = 2
-        Me.Button_Geld_7.Text = "Button4"
+        Me.Button_Geld_7.Text = "7"
         Me.Button_Geld_7.UseVisualStyleBackColor = True
         '
         'Button_Geld_4
@@ -420,7 +420,7 @@ Partial Class MainForm
         Me.Button_Geld_4.Name = "Button_Geld_4"
         Me.Button_Geld_4.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_4.TabIndex = 1
-        Me.Button_Geld_4.Text = "Button3"
+        Me.Button_Geld_4.Text = "4"
         Me.Button_Geld_4.UseVisualStyleBackColor = True
         '
         'Button_Geld_1
@@ -429,14 +429,14 @@ Partial Class MainForm
         Me.Button_Geld_1.Name = "Button_Geld_1"
         Me.Button_Geld_1.Size = New System.Drawing.Size(30, 30)
         Me.Button_Geld_1.TabIndex = 0
-        Me.Button_Geld_1.Text = "Button2"
+        Me.Button_Geld_1.Text = "1"
         Me.Button_Geld_1.UseVisualStyleBackColor = True
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(633, 371)
+        Me.ClientSize = New System.Drawing.Size(633, 329)
         Me.Controls.Add(Me.GroupBox_geld)
         Me.Controls.Add(Me.Button_OK_Order)
         Me.Controls.Add(Me.TextBox_PayPal_Pw)
