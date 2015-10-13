@@ -71,13 +71,15 @@
         If CheckBox_Zucker.Checked Then
             total += zutaten(1)
         End If
+
         If CheckBox_Sahne.Checked Then
             total += zutaten(2)
         End If
         Return total
     End Function
 
-    Private Sub Button_pay_Click(sender As Object, e As EventArgs) Handles Button_pay.Click
+    Private Sub Button_pay_Click(sender As Object, e As EventArgs) Handles Button_pay.MouseClick
+
         GroupBox_Geld.Enabled = True
         GroupBox_getraenke.Enabled = False
         GroupBox_Zutaten.Enabled = False

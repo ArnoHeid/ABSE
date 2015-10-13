@@ -10,40 +10,41 @@
         Me.Preis = Preis
     End Sub
 
-    Public Function getName()
+    Public Function getName() As String
         Return Name
     End Function
 
-    Public Function getCode()
+    Public Function getCode() As Integer
+
         Return Code
     End Function
 
-    Public Function getPreis(Typ As String, Fahrer As String)
+    Public Function getPreis(Typ As String, Fahrer As String) As Double
 
         'Unterscheidung der Fahrer
         Dim Preis As Double
-        If String.Compare(Fahrer, "Kind") Then
+        If String.Compare(Fahrer, "Kind") = 0 Then
             Preis = 0.5 * Me.Preis
-        ElseIf String.Compare(Fahrer, "Azubi") Then
+        ElseIf String.Compare(Fahrer, "Azubi") = 0 Then
             Preis = 0.75 * Me.Preis
-        ElseIf String.Compare(Fahrer, "SchwerBe") Then
+        ElseIf String.Compare(Fahrer, "SchwerBe") = 0 Then
             Preis = 0
-        ElseIf String.Compare(Fahrer, "Fahrrad") Then
+        ElseIf String.Compare(Fahrer, "Fahrrad") = 0 Then
             Preis = 1.25 * Me.Preis
-        ElseIf String.Compare(Fahrer, "Hund") Then
+        ElseIf String.Compare(Fahrer, "Hund") = 0 Then
             Preis = 0.25 * Me.Preis
         Else
             Preis = Me.Preis
         End If
 
         'Unterscheidung Karten Typ
-        If String.Compare(Typ, "Einfach") Then
+        If String.Compare(Typ, "Einfach") = 0 Then
             Preis = Preis
-        ElseIf String.Compare(Typ, "HinRueck") Then
+        ElseIf String.Compare(Typ, "HinRueck") = 0 Then
             Preis = 2 * Preis
-        ElseIf String.Compare(Typ, "Tages") Then
+        ElseIf String.Compare(Typ, "Tages") = 0 Then
             Preis = 3 * Preis
-        ElseIf String.Compare(Typ, "Gruppe") Then
+        ElseIf String.Compare(Typ, "Gruppe") = 0 Then
             Preis = 4 * Preis
         Else    'Wochen Karte
             Preis = 5 * Preis
