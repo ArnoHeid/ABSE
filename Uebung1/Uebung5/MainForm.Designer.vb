@@ -91,6 +91,7 @@ Partial Class MainForm
         Me.ComboBox_Ziel.Name = "ComboBox_Ziel"
         Me.ComboBox_Ziel.Size = New System.Drawing.Size(171, 21)
         Me.ComboBox_Ziel.TabIndex = 2
+        Me.ComboBox_Ziel.Text = "Alle Ziele"
         '
         'TextBox_Eingabe
         '
@@ -265,6 +266,7 @@ Partial Class MainForm
         Me.ComboBox_Pay_Typ.Name = "ComboBox_Pay_Typ"
         Me.ComboBox_Pay_Typ.Size = New System.Drawing.Size(155, 21)
         Me.ComboBox_Pay_Typ.TabIndex = 8
+        Me.ComboBox_Pay_Typ.Text = "Zahlungs Methoden"
         '
         'TextBox_KontNr
         '

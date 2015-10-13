@@ -59,6 +59,7 @@
         ElseIf RadioButton_Espresso.Checked Then
             Return 4
         End If
+
     End Function
 
     Private Function getZusatz() As Double

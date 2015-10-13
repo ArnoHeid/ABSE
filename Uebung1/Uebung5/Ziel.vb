@@ -54,6 +54,25 @@
 
     End Function
 
+    Overrides Function toString() As String
+        Return Name & " (" & Code & ")"
+    End Function
+
+    Function isFitting(value As String) As Boolean
+        If IsNumeric(value) Then
+
+
+        Else
+            Dim Name_Kurz As String
+            Name_Kurz = UCase(Name.Substring(0, value.Length))
+            Return UCase(value).Equals(Name_Kurz)
+        End If
+
+
+
+    End Function
+
+
 
 
 End Class
