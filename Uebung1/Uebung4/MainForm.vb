@@ -165,7 +165,7 @@
     Private Sub TextBox_toPay_TextChanged(sender As Object, e As EventArgs) Handles TextBox_toPay.TextChanged
         Dim newToPay As Double
         Double.TryParse(TextBox_toPay.Text, newToPay)
-        If newToPay <= 0 And GroupBox_Geld.Focus Then
+        If newToPay <= 1 And GroupBox_Geld.Focus Then
             newToPay = -newToPay
             TextBox_Back.Text = newToPay.ToString("f2")
             GroupBox_Geld.Enabled = False

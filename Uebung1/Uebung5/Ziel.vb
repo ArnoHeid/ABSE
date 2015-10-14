@@ -19,32 +19,32 @@
         Return Code
     End Function
 
-    Public Function getPreis(Typ As String, Fahrer As String) As Double
+    Public Function getPreis(Typ As Integer, Fahrer As Integer) As Double
 
         'Unterscheidung der Fahrer
         Dim Preis As Double
-        If String.Compare(Fahrer, "Kind") = 0 Then
+        If Fahrer = 0 Then
             Preis = 0.5 * Me.Preis
-        ElseIf String.Compare(Fahrer, "Azubi") = 0 Then
+        ElseIf Fahrer = 2 Then
             Preis = 0.75 * Me.Preis
-        ElseIf String.Compare(Fahrer, "SchwerBe") = 0 Then
+        ElseIf Fahrer = 3 Then
             Preis = 0
-        ElseIf String.Compare(Fahrer, "Fahrrad") = 0 Then
+        ElseIf Fahrer = 4 Then
             Preis = 1.25 * Me.Preis
-        ElseIf String.Compare(Fahrer, "Hund") = 0 Then
+        ElseIf Fahrer = 5 Then
             Preis = 0.25 * Me.Preis
         Else
             Preis = Me.Preis
         End If
 
         'Unterscheidung Karten Typ
-        If String.Compare(Typ, "Einfach") = 0 Then
+        If Typ = 0 Then
             Preis = Preis
-        ElseIf String.Compare(Typ, "HinRueck") = 0 Then
+        ElseIf Typ = 1 Then
             Preis = 2 * Preis
-        ElseIf String.Compare(Typ, "Tages") = 0 Then
+        ElseIf Typ = 2 Then
             Preis = 3 * Preis
-        ElseIf String.Compare(Typ, "Gruppe") = 0 Then
+        ElseIf Typ = 3 Then
             Preis = 4 * Preis
         Else    'Wochen Karte
             Preis = 5 * Preis
@@ -60,17 +60,30 @@
 
     Function isFitting(value As String) As Boolean
         If IsNumeric(value) Then
-
-
+            Dim value_int As Integer = Integer.Parse(value)
+            Dim Value_count = CountInt(value_int)
+            Dim Code_count = CountInt(Code)
+            If (Value_count > Code_count) Then
+                Return False
+            Else
+                Dim code_kurz As Integer = CInt(Code / Math.Pow(10, Code_count - Value_count))
+                Return value_int = code_kurz
+            End If
         Else
             Dim Name_Kurz As String
             Name_Kurz = UCase(Name.Substring(0, value.Length))
             Return UCase(value).Equals(Name_Kurz)
         End If
 
+    End Function
 
+    Private Function CountInt(value As Integer) As Integer
+        Dim value_String As String = value.ToString
+        Return value_String.Length
 
     End Function
+
+
 
 
 

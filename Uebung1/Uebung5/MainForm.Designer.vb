@@ -270,31 +270,39 @@ Partial Class MainForm
         '
         'TextBox_KontNr
         '
+        Me.TextBox_KontNr.AccessibleName = "Kontonummer hire eingeben"
         Me.TextBox_KontNr.Location = New System.Drawing.Point(303, 193)
         Me.TextBox_KontNr.Name = "TextBox_KontNr"
         Me.TextBox_KontNr.Size = New System.Drawing.Size(155, 20)
         Me.TextBox_KontNr.TabIndex = 9
+        Me.TextBox_KontNr.Text = "Kontonummer hire eingeben"
         '
         'TextBox_Check_Nr
         '
+        Me.TextBox_Check_Nr.AccessibleName = "Prüfziffer"
         Me.TextBox_Check_Nr.Location = New System.Drawing.Point(303, 219)
         Me.TextBox_Check_Nr.Name = "TextBox_Check_Nr"
         Me.TextBox_Check_Nr.Size = New System.Drawing.Size(76, 20)
         Me.TextBox_Check_Nr.TabIndex = 10
+        Me.TextBox_Check_Nr.Text = "Prüfziffer"
         '
         'TextBox_PayPal
         '
+        Me.TextBox_PayPal.AccessibleName = "eMail - Paypal"
         Me.TextBox_PayPal.Location = New System.Drawing.Point(303, 255)
         Me.TextBox_PayPal.Name = "TextBox_PayPal"
         Me.TextBox_PayPal.Size = New System.Drawing.Size(155, 20)
         Me.TextBox_PayPal.TabIndex = 11
+        Me.TextBox_PayPal.Text = "eMail - Paypal"
         '
         'TextBox_PayPal_Pw
         '
+        Me.TextBox_PayPal_Pw.AccessibleName = "Passwort"
         Me.TextBox_PayPal_Pw.Location = New System.Drawing.Point(303, 281)
         Me.TextBox_PayPal_Pw.Name = "TextBox_PayPal_Pw"
         Me.TextBox_PayPal_Pw.Size = New System.Drawing.Size(76, 20)
         Me.TextBox_PayPal_Pw.TabIndex = 12
+        Me.TextBox_PayPal_Pw.Text = "Passwort"
         '
         'Button_OK_Order
         '
@@ -324,7 +332,7 @@ Partial Class MainForm
         Me.GroupBox_geld.Size = New System.Drawing.Size(118, 165)
         Me.GroupBox_geld.TabIndex = 14
         Me.GroupBox_geld.TabStop = False
-        Me.GroupBox_geld.Text = "GroupBox2"
+        Me.GroupBox_geld.Text = "Geldeingabe"
         '
         'Button_Geld_Kom
         '
