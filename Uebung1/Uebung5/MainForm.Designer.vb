@@ -60,6 +60,7 @@ Partial Class MainForm
         Me.Button_Geld_7 = New System.Windows.Forms.Button()
         Me.Button_Geld_4 = New System.Windows.Forms.Button()
         Me.Button_Geld_1 = New System.Windows.Forms.Button()
+        Me.TextBox_Geld_value = New System.Windows.Forms.TextBox()
         Me.GroupBox_Fahrkarte.SuspendLayout()
         Me.GroupBox_Reis.SuspendLayout()
         Me.GroupBox_geld.SuspendLayout()
@@ -315,6 +316,7 @@ Partial Class MainForm
         '
         'GroupBox_geld
         '
+        Me.GroupBox_geld.Controls.Add(Me.TextBox_Geld_value)
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_Kom)
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_9)
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_6)
@@ -327,9 +329,9 @@ Partial Class MainForm
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_7)
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_4)
         Me.GroupBox_geld.Controls.Add(Me.Button_Geld_1)
-        Me.GroupBox_geld.Location = New System.Drawing.Point(482, 139)
+        Me.GroupBox_geld.Location = New System.Drawing.Point(482, 105)
         Me.GroupBox_geld.Name = "GroupBox_geld"
-        Me.GroupBox_geld.Size = New System.Drawing.Size(118, 165)
+        Me.GroupBox_geld.Size = New System.Drawing.Size(118, 195)
         Me.GroupBox_geld.TabIndex = 14
         Me.GroupBox_geld.TabStop = False
         Me.GroupBox_geld.Text = "Geldeingabe"
@@ -442,6 +444,13 @@ Partial Class MainForm
         Me.Button_Geld_1.Text = "1"
         Me.Button_Geld_1.UseVisualStyleBackColor = True
         '
+        'TextBox_Geld_value
+        '
+        Me.TextBox_Geld_value.Location = New System.Drawing.Point(7, 164)
+        Me.TextBox_Geld_value.Name = "TextBox_Geld_value"
+        Me.TextBox_Geld_value.Size = New System.Drawing.Size(101, 20)
+        Me.TextBox_Geld_value.TabIndex = 12
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -469,6 +478,7 @@ Partial Class MainForm
         Me.GroupBox_Reis.ResumeLayout(False)
         Me.GroupBox_Reis.PerformLayout()
         Me.GroupBox_geld.ResumeLayout(False)
+        Me.GroupBox_geld.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -512,4 +522,5 @@ Partial Class MainForm
     Friend WithEvents Button_Geld_7 As Button
     Friend WithEvents Button_Geld_4 As Button
     Friend WithEvents Button_Geld_1 As Button
+    Friend WithEvents TextBox_Geld_value As TextBox
 End Class
