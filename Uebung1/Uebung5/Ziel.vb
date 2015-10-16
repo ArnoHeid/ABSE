@@ -70,9 +70,13 @@
                 Return value_int = code_kurz
             End If
         Else
-            Dim Name_Kurz As String
-            Name_Kurz = UCase(Name.Substring(0, value.Length))
-            Return UCase(value).Equals(Name_Kurz)
+            If value.Length > Name.Length Then
+                Return False
+            Else
+                Dim Name_Kurz As String
+                Name_Kurz = UCase(Name.Substring(0, value.Length))
+                Return UCase(value).Equals(Name_Kurz)
+            End If
         End If
 
     End Function

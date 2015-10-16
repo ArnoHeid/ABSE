@@ -103,8 +103,9 @@
     Private Sub Button_OK_Order_Click(sender As Object, e As EventArgs) Handles Button_OK_Order.Click
         Dim test As Boolean = isValidString(TextBox_PayPal_Pw.Text, "!§$%&/()=?+,.;:_+-")
         If ComboBox_Pay_Typ.SelectedIndex = 0 Then
-            If (Double.Parse(TextBox_Geld_value.Text) - Double.Parse(TextBox_Preis.Text)) >= 0 Then
-                MsgBox("Bargeld Zahlung Erfolgreich")
+            Dim rueck As Double = Double.Parse(TextBox_Geld_value.Text) - Double.Parse(TextBox_Preis.Text)
+            If (rueck) >= 0 Then
+                MsgBox("Bargeld Zahlung Erfolgreich! Rückgeld: " & rueck.ToString("f2"))
             Else
                 MsgBox("Nicht Genug geld Eingezahlt")
             End If
