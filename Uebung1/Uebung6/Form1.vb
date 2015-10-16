@@ -19,6 +19,11 @@
         ComboBox_method.Items.Add("Buchstaben in Zahlen umwandeln")
         ComboBox_method.Items.Add("Buchstaben codieren")
 
+        Rest_Visi()
+
+    End Sub
+
+    Sub Rest_Visi()
         TextBox_insert.Visible = False
         TextBox_insert.Enabled = False
 
@@ -52,8 +57,8 @@
 
         Button_run.Visible = False
         Button_run.Enabled = False
-
     End Sub
+
 
     Sub St_remove_Inter()
         TextBox_bis.Visible = True
@@ -72,6 +77,23 @@
         Button_run.Enabled = True
     End Sub
 
+    Sub St_Insert_Inter()
+        St_remove_Inter()
+        TextBox_insert.Visible = True
+        TextBox_insert.Enabled = True
+    End Sub
+
+    Sub St_Invers_Inter()
+        TextBox_result.Visible = True
+        TextBox_result.Enabled = True
+        Label_result.Visible = True
+
+        Button_invert.Visible = True
+        Button_invert.Enabled = True
+
+        Button_run.Visible = True
+        Button_run.Enabled = True
+    End Sub
 
     Private Sub Button_run_Click(sender As Object, e As EventArgs) Handles Button_run.Click
         Select Case ComboBox_method.SelectedIndex
@@ -97,39 +119,65 @@
     End Sub
 
     Private Sub invert_word()
-        Throw New NotImplementedException()
+        Dim parts() As String = TextBox_input.Text.Split
+        Dim St_revers As String = ""
+        For i As Integer = 0 To parts.Length - 1
+            St_revers = parts(i) & " " & St_revers
+        Next
+        TextBox_result.Text = St_revers
     End Sub
 
     Private Sub invert_char()
-        Throw New NotImplementedException()
+        Dim St_revers As String = ""
+        For i As Integer = 0 To TextBox_input.Text.Length - 1
+            St_revers = TextBox_input.Text(i) & St_revers
+        Next
+        TextBox_result.Text = St_revers
     End Sub
 
     Private Sub St_Insert()
-        Throw New NotImplementedException()
+        If TextBox_von.Text = "" Or TextBox_bis.Text = "" Then
+            Exit Sub
+        End If
+        Dim st_array() As String = StSplitRemoveAndInsert()
+
+        TextBox_result.Text = st_array(0) & TextBox_insert.Text & st_array(1)
     End Sub
 
     Private Sub St_remove()
+        If TextBox_von.Text = "" Or TextBox_bis.Text = "" Then
+            Exit Sub
+        End If
+        Dim st_array() As String = StSplitRemoveAndInsert()
+
+        TextBox_result.Text = st_array(0) & st_array(1)
+    End Sub
+
+    Function StSplitRemoveAndInsert() As String()
+
+        If TextBox_von.Text = "" Or TextBox_bis.Text = "" Then
+            Exit Function
+        End If
+
         Dim von_int As Integer = Integer.Parse(TextBox_von.Text)
         Dim bis_int As Integer = Integer.Parse(TextBox_bis.Text)
 
+        Dim st_array(1) As String
+
         If von_int > bis_int Then
             MsgBox("Der Von-Wert muss kleiner als der Bis-Wert")
-            Exit Sub
+            Exit Function
         End If
         If bis_int > TextBox_input.Text.Length Then
             MsgBox("Der Bis-Wert darf nicht größer als die länge des Eingabe textes sein!")
-            Exit Sub
+            Exit Function
         End If
 
-        Dim st_1 As String = TextBox_input.Text.Substring(0, von_int - 1)
-        Dim st_2 As String = TextBox_input.Text.Substring(bis_int, TextBox_input.Text.Length - bis_int)
-
-        TextBox_result.Text = st_1 & st_2
-    End Sub
-
-    Function StSplit() As String(2)
-
+        st_array(0) = TextBox_input.Text.Substring(0, von_int - 1)
+        st_array(1) = TextBox_input.Text.Substring(bis_int, TextBox_input.Text.Length - bis_int)
+        Return st_array
     End Function
+
 
     Private Sub TextBox_Number_Only_KeyUp(sender As Object, e As KeyEventArgs) Handles TextBox_von.KeyUp, TextBox_bis.KeyUp
         Dim tBox As TextBox = DirectCast(sender, TextBox)
@@ -140,6 +188,27 @@
     End Sub
 
     Private Sub ComboBox_method_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_method.SelectedIndexChanged
-        St_remove_Inter()
+        Select Case ComboBox_method.SelectedIndex
+            Case 0
+                Rest_Visi()
+                St_remove_Inter()
+            Case 1
+                Rest_Visi()
+                St_Insert_Inter()
+            Case 2
+                Rest_Visi()
+                St_Invers_Inter()
+            Case 3
+                Rest_Visi()
+                St_Invers_Inter()
+            Case 4
+
+            Case 5
+
+            Case 6
+
+        End Select
+
     End Sub
+
 End Class
