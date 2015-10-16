@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        init()
+        'init()
     End Sub
 
     Sub init()
