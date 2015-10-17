@@ -43,14 +43,15 @@ Partial Class Form1
         Me.Label_para_b = New System.Windows.Forms.Label()
         Me.TextBox_para_c = New System.Windows.Forms.TextBox()
         Me.Label_para_c = New System.Windows.Forms.Label()
-        Me.Button_invert = New System.Windows.Forms.Button()
+        Me.Button_reset = New System.Windows.Forms.Button()
         Me.TextBox_von = New System.Windows.Forms.TextBox()
+        Me.Button_Decode = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(264, 16)
+        Me.Label1.Location = New System.Drawing.Point(233, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(128, 13)
         Me.Label1.TabIndex = 0
@@ -227,14 +228,14 @@ Partial Class Form1
         Me.Label_para_c.TabIndex = 20
         Me.Label_para_c.Text = "Parameter c:"
         '
-        'Button_invert
+        'Button_reset
         '
-        Me.Button_invert.Location = New System.Drawing.Point(481, 291)
-        Me.Button_invert.Name = "Button_invert"
-        Me.Button_invert.Size = New System.Drawing.Size(75, 23)
-        Me.Button_invert.TabIndex = 22
-        Me.Button_invert.Text = "invertieren"
-        Me.Button_invert.UseVisualStyleBackColor = True
+        Me.Button_reset.Location = New System.Drawing.Point(135, 291)
+        Me.Button_reset.Name = "Button_reset"
+        Me.Button_reset.Size = New System.Drawing.Size(75, 23)
+        Me.Button_reset.TabIndex = 22
+        Me.Button_reset.Text = "Reset"
+        Me.Button_reset.UseVisualStyleBackColor = True
         '
         'TextBox_von
         '
@@ -243,13 +244,23 @@ Partial Class Form1
         Me.TextBox_von.Size = New System.Drawing.Size(88, 20)
         Me.TextBox_von.TabIndex = 23
         '
+        'Button_Decode
+        '
+        Me.Button_Decode.Location = New System.Drawing.Point(482, 291)
+        Me.Button_Decode.Name = "Button_Decode"
+        Me.Button_Decode.Size = New System.Drawing.Size(75, 23)
+        Me.Button_Decode.TabIndex = 24
+        Me.Button_Decode.Text = "Decode"
+        Me.Button_Decode.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(601, 345)
+        Me.Controls.Add(Me.Button_Decode)
         Me.Controls.Add(Me.TextBox_von)
-        Me.Controls.Add(Me.Button_invert)
+        Me.Controls.Add(Me.Button_reset)
         Me.Controls.Add(Me.TextBox_para_c)
         Me.Controls.Add(Me.Label_para_c)
         Me.Controls.Add(Me.TextBox_para_b)
@@ -299,6 +310,7 @@ Partial Class Form1
     Friend WithEvents Label_para_b As Label
     Friend WithEvents TextBox_para_c As TextBox
     Friend WithEvents Label_para_c As Label
-    Friend WithEvents Button_invert As Button
+    Friend WithEvents Button_reset As Button
     Friend WithEvents TextBox_von As TextBox
+    Friend WithEvents Button_Decode As Button
 End Class

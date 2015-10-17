@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'init()
+        init()
     End Sub
 
     Sub init()
@@ -18,6 +18,12 @@
         ComboBox_method.Items.Add("Wortreihenfolge ändern")
         ComboBox_method.Items.Add("Buchstaben in Zahlen umwandeln")
         ComboBox_method.Items.Add("Buchstaben codieren")
+
+        ComboBox_funktion.Items.Add("x+a")
+        ComboBox_funktion.Items.Add("b*x+a")
+        ComboBox_funktion.Items.Add("x(Bitshift)")
+        ComboBox_funktion.Items.Add("x(Bitumkehr)")
+
 
         Rest_Visi()
 
@@ -57,6 +63,10 @@
 
         Button_run.Visible = False
         Button_run.Enabled = False
+
+        Button_Decode.Visible = False
+        Button_Decode.Enabled = False
+
     End Sub
 
 
@@ -88,11 +98,55 @@
         TextBox_result.Enabled = True
         Label_result.Visible = True
 
-        Button_invert.Visible = True
-        Button_invert.Enabled = True
+        Button_reset.Visible = True
+        Button_reset.Enabled = True
 
         Button_run.Visible = True
         Button_run.Enabled = True
+    End Sub
+
+    Sub St_Numb_Inter()
+        TextBox_result.Visible = True
+        TextBox_result.Enabled = True
+        Label_result.Visible = True
+
+        Button_run.Visible = True
+        Button_run.Enabled = True
+    End Sub
+
+    Sub St_Fun_Inter()
+        ComboBox_funktion.Visible = True
+        ComboBox_funktion.Enabled = True
+
+    End Sub
+
+    Sub St_Fun_1_Inter()
+        ComboBox_funktion.Visible = True
+        ComboBox_funktion.Enabled = True
+
+        Button_Decode.Visible = True
+        Button_Decode.Enabled = True
+
+        TextBox_result.Visible = True
+        TextBox_result.Enabled = True
+        Label_result.Visible = True
+
+        Button_run.Visible = True
+        Button_run.Enabled = True
+
+        Label_para_a.Visible = True
+        TextBox_para_a.Visible = True
+        TextBox_para_a.Enabled = True
+
+    End Sub
+
+    Sub St_Fun_2_Inter()
+        St_Fun_1_Inter()
+
+        Label_para_b.Visible = True
+        TextBox_para_b.Visible = True
+        TextBox_para_b.Enabled = True
+
     End Sub
 
     Private Sub Button_run_Click(sender As Object, e As EventArgs) Handles Button_run.Click
@@ -108,15 +162,36 @@
             Case 4
                 char_to_Num()
             Case 5
+                Dim code As ICodeString
 
-            Case 6
-
+                Select Case ComboBox_funktion.SelectedIndex
+                    Case 0
+                        code = New CodeOffset()
+                    Case 1
+                        code = New CodeOffsetAndMulti()
+                    Case 2
+                        code = New CodeBitshift()
+                    Case 3
+                        code = New CodeBitInvert()
+                End Select
+                TextBox_result.Text = code.code(TextBox_input.Text, ParaToInt(TextBox_para_a.Text), ParaToInt(TextBox_para_b.Text), ParaToInt(TextBox_para_c.Text))
         End Select
     End Sub
 
+    Function ParaToInt(value As String) As Integer
+        If value = "Wert" Then
+            Return 0
+        End If
+        Return Integer.Parse(value)
+    End Function
+
+
     Private Sub char_to_Num()
-        Throw New NotImplementedException()
+        For i As Integer = 0 To TextBox_input.Text.Length - 1
+            TextBox_result.Text = TextBox_result.Text & Asc(TextBox_input.Text(i)) Mod 10
+        Next
     End Sub
+
 
     Private Sub invert_word()
         Dim parts() As String = TextBox_input.Text.Split
@@ -178,8 +253,7 @@
         Return st_array
     End Function
 
-
-    Private Sub TextBox_Number_Only_KeyUp(sender As Object, e As KeyEventArgs) Handles TextBox_von.KeyUp, TextBox_bis.KeyUp
+    Private Sub TextBox_Number_Only_KeyUp(sender As Object, e As KeyEventArgs) Handles TextBox_von.KeyUp, TextBox_bis.KeyUp, TextBox_para_c.KeyUp, TextBox_para_b.KeyUp, TextBox_para_a.KeyUp
         Dim tBox As TextBox = DirectCast(sender, TextBox)
         While Not IsNumeric(tBox.Text) And tBox.Text.Length > 0
             tBox.Text = tBox.Text.Substring(0, tBox.Text.Length - 1)
@@ -202,13 +276,58 @@
                 Rest_Visi()
                 St_Invers_Inter()
             Case 4
-
+                Rest_Visi()
+                St_Numb_Inter()
             Case 5
-
-            Case 6
-
+                Rest_Visi()
+                St_Fun_Inter()
         End Select
 
     End Sub
 
+    Private Sub Button_reset_Click(sender As Object, e As EventArgs) Handles Button_reset.Click
+
+    End Sub
+
+    Private Sub ComboBox_funktion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_funktion.SelectedIndexChanged
+        Select Case ComboBox_funktion.SelectedIndex
+            Case 0
+                Rest_Visi()
+                St_Fun_1_Inter()
+            Case 1
+                Rest_Visi()
+                St_Fun_2_Inter()
+            Case 2
+                Rest_Visi()
+                St_Fun_1_Inter()
+            Case 3
+                Rest_Visi()
+                St_Fun_1_Inter()
+        End Select
+    End Sub
+
+    Private Sub Button_Decode_Click(sender As Object, e As EventArgs) Handles Button_Decode.Click
+        Dim code As ICodeString
+
+        Select Case ComboBox_funktion.SelectedIndex
+            Case 0
+                code = New CodeOffset()
+            Case 1
+                code = New CodeOffsetAndMulti()
+            Case 2
+                code = New CodeBitshift()
+            Case 3
+                code = New CodeBitInvert()
+        End Select
+
+        Dim str As String
+
+        If TextBox_result.Text = "" Then
+            str = TextBox_input.Text
+        Else
+            str = TextBox_result.Text
+        End If
+
+        TextBox_result.Text = code.decode(str, ParaToInt(TextBox_para_a.Text), ParaToInt(TextBox_para_b.Text), ParaToInt(TextBox_para_c.Text))
+    End Sub
 End Class
