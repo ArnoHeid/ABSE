@@ -24,7 +24,6 @@
         ComboBox_funktion.Items.Add("x(Bitshift)")
         ComboBox_funktion.Items.Add("x(Bitumkehr)")
 
-
         Rest_Visi()
 
     End Sub
@@ -330,4 +329,5 @@
 
         TextBox_result.Text = code.decode(str, ParaToInt(TextBox_para_a.Text), ParaToInt(TextBox_para_b.Text), ParaToInt(TextBox_para_c.Text))
     End Sub
+
 End Class
