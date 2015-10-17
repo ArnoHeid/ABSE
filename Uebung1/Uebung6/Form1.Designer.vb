@@ -51,9 +51,10 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(233, 19)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(198, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(128, 13)
+        Me.Label1.Size = New System.Drawing.Size(214, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Tool zur Textmanipulation"
         '
@@ -83,7 +84,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(33, 59)
+        Me.Label2.Location = New System.Drawing.Point(33, 54)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(31, 13)
         Me.Label2.TabIndex = 5
@@ -101,7 +102,7 @@ Partial Class Form1
         'Label_bis
         '
         Me.Label_bis.AutoSize = True
-        Me.Label_bis.Location = New System.Drawing.Point(33, 171)
+        Me.Label_bis.Location = New System.Drawing.Point(33, 166)
         Me.Label_bis.Name = "Label_bis"
         Me.Label_bis.Size = New System.Drawing.Size(23, 13)
         Me.Label_bis.TabIndex = 7
@@ -144,7 +145,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(361, 51)
+        Me.Label6.Location = New System.Drawing.Point(361, 58)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(97, 13)
         Me.Label6.TabIndex = 12
@@ -162,7 +163,7 @@ Partial Class Form1
         'Label_funktion
         '
         Me.Label_funktion.AutoSize = True
-        Me.Label_funktion.Location = New System.Drawing.Point(361, 147)
+        Me.Label_funktion.Location = New System.Drawing.Point(361, 138)
         Me.Label_funktion.Name = "Label_funktion"
         Me.Label_funktion.Size = New System.Drawing.Size(51, 13)
         Me.Label_funktion.TabIndex = 14
@@ -171,7 +172,7 @@ Partial Class Form1
         'ComboBox_funktion
         '
         Me.ComboBox_funktion.FormattingEnabled = True
-        Me.ComboBox_funktion.Location = New System.Drawing.Point(433, 139)
+        Me.ComboBox_funktion.Location = New System.Drawing.Point(436, 135)
         Me.ComboBox_funktion.Name = "ComboBox_funktion"
         Me.ComboBox_funktion.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox_funktion.TabIndex = 15
@@ -180,7 +181,7 @@ Partial Class Form1
         'Label_para_a
         '
         Me.Label_para_a.AutoSize = True
-        Me.Label_para_a.Location = New System.Drawing.Point(361, 187)
+        Me.Label_para_a.Location = New System.Drawing.Point(361, 182)
         Me.Label_para_a.Name = "Label_para_a"
         Me.Label_para_a.Size = New System.Drawing.Size(67, 13)
         Me.Label_para_a.TabIndex = 16
@@ -205,7 +206,7 @@ Partial Class Form1
         'Label_para_b
         '
         Me.Label_para_b.AutoSize = True
-        Me.Label_para_b.Location = New System.Drawing.Point(361, 219)
+        Me.Label_para_b.Location = New System.Drawing.Point(361, 214)
         Me.Label_para_b.Name = "Label_para_b"
         Me.Label_para_b.Size = New System.Drawing.Size(67, 13)
         Me.Label_para_b.TabIndex = 18
@@ -222,7 +223,7 @@ Partial Class Form1
         'Label_para_c
         '
         Me.Label_para_c.AutoSize = True
-        Me.Label_para_c.Location = New System.Drawing.Point(361, 251)
+        Me.Label_para_c.Location = New System.Drawing.Point(361, 246)
         Me.Label_para_c.Name = "Label_para_c"
         Me.Label_para_c.Size = New System.Drawing.Size(67, 13)
         Me.Label_para_c.TabIndex = 20

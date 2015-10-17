@@ -120,6 +120,16 @@
     End Sub
 
     Sub St_Fun_1_Inter()
+
+        St_Fun_3_Inter()
+
+        Label_para_a.Visible = True
+        TextBox_para_a.Visible = True
+        TextBox_para_a.Enabled = True
+
+    End Sub
+
+    Sub St_Fun_3_Inter()
         ComboBox_funktion.Visible = True
         ComboBox_funktion.Enabled = True
 
@@ -132,12 +142,8 @@
 
         Button_run.Visible = True
         Button_run.Enabled = True
-
-        Label_para_a.Visible = True
-        TextBox_para_a.Visible = True
-        TextBox_para_a.Enabled = True
-
     End Sub
+
 
     Sub St_Fun_2_Inter()
         St_Fun_1_Inter()
@@ -301,7 +307,7 @@
                 St_Fun_1_Inter()
             Case 3
                 Rest_Visi()
-                St_Fun_1_Inter()
+                St_Fun_3_Inter()
         End Select
     End Sub
 
