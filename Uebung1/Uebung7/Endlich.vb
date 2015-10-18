@@ -1,4 +1,7 @@
 ﻿Public Class Endlich
+
+    Dim Geo_Reihe As List(Of Double)
+
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
         Me.Close()
     End Sub
@@ -7,6 +10,7 @@
         If Not isAValied() And Not isQValied() And Not isDeltaValied() Then
             Exit Sub
         End If
+        Geo_Reihe = New List(Of Double)
 
         Dim a_int As Integer = Integer.Parse(TextBox_Faktor_a.Text)
         Dim q_int As Integer = Integer.Parse(TextBox_Faktor_q.Text)
@@ -14,16 +18,17 @@
 
         If q_int = 1 Then
             For i As Integer = 1 To Iter_int
-                Dim sn As Double = q_int * (i + 1)
-
+                Dim sn As Double = a_int * (i + 1)
+                Geo_Reihe.Add(sn)
             Next
         Else
-            For i As Integer = 1 To Integer.Parse(TextBox_Iteration.Text)
-                Dim sn As Double = q_int * (Math.Pow(q_int, i + 1) - 1) / (q_int - 1)
-
+            For i As Integer = 0 To Integer.Parse(TextBox_Iteration.Text)
+                Dim sn As Double = a_int * (Math.Pow(q_int, i + 1) - 1) / (q_int - 1)
+                Geo_Reihe.Add(sn)
             Next
         End If
 
+        MsgBox("Fertig")
 
 
     End Sub
