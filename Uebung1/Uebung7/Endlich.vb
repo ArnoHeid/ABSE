@@ -4,19 +4,28 @@
     End Sub
 
     Private Sub Button_start_Click(sender As Object, e As EventArgs) Handles Button_start.Click
-        If Not isAValied() Then
+        If Not isAValied() And Not isQValied() And Not isDeltaValied() Then
+            Exit Sub
+        End If
 
-        ElseIf Not isQValied() Then
+        Dim a_int As Integer = Integer.Parse(TextBox_Faktor_a.Text)
+        Dim q_int As Integer = Integer.Parse(TextBox_Faktor_q.Text)
+        Dim Iter_int As Integer = Integer.Parse(TextBox_Iteration.Text)
 
-        ElseIf Not isDeltaValied() Then
+        If q_int = 1 Then
+            For i As Integer = 1 To Iter_int
+                Dim sn As Double = q_int * (i + 1)
 
+            Next
+        Else
+            For i As Integer = 1 To Integer.Parse(TextBox_Iteration.Text)
+                Dim sn As Double = q_int * (Math.Pow(q_int, i + 1) - 1) / (q_int - 1)
 
+            Next
         End If
 
 
-        For i As Integer = 1 To 2
 
-        Next
     End Sub
 
     Function isAValied() As Boolean
@@ -36,23 +45,27 @@
     End Function
 
     Function isQValied() As Boolean
-        If Not IsNumeric(TextBox_Faktor_a.Text) Then
-            MsgBox("a muss eine Zahl sein")
+        If Not IsNumeric(TextBox_Faktor_q.Text) Then
+            MsgBox("q muss eine Zahl sein")
             Return False
         Else
-            Dim a_int As Integer = Integer.Parse(TextBox_Faktor_a.Text)
-            If (a_int > 1) Then
-                Return True
-            Else
-                MsgBox("a muss größer als 1 sein")
-                Return False
-            End If
+            Return True
         End If
-
     End Function
 
     Function isDeltaValied() As Boolean
-
+        If Not IsNumeric(TextBox_Iteration.Text) Then
+            MsgBox("Die Anzahl der Iterationen muss eine Zahl sein")
+            Return False
+        Else
+            Dim Iter_int As Integer = Integer.Parse(TextBox_Iteration.Text)
+            If (Iter_int > 1) Then
+                Return True
+            Else
+                MsgBox("Die Anzahl der Iterationen muss größer als 0 sein")
+                Return False
+            End If
+        End If
     End Function
 
 End Class
