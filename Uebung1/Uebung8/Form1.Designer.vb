@@ -23,10 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton_PunktNr = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_XKord = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_YKord = New System.Windows.Forms.RadioButton()
         Me.RadioButton_ZKord = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_YKord = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_XKord = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_PunktNr = New System.Windows.Forms.RadioButton()
         Me.Button_FileOpen = New System.Windows.Forms.Button()
         Me.Button_ExportFile = New System.Windows.Forms.Button()
         Me.Button_export = New System.Windows.Forms.Button()
@@ -47,27 +47,16 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
-        'RadioButton_PunktNr
+        'RadioButton_ZKord
         '
-        Me.RadioButton_PunktNr.AutoSize = True
-        Me.RadioButton_PunktNr.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton_PunktNr.Name = "RadioButton_PunktNr"
-        Me.RadioButton_PunktNr.Size = New System.Drawing.Size(70, 17)
-        Me.RadioButton_PunktNr.TabIndex = 0
-        Me.RadioButton_PunktNr.TabStop = True
-        Me.RadioButton_PunktNr.Text = "Punkt Nr."
-        Me.RadioButton_PunktNr.UseVisualStyleBackColor = True
-        '
-        'RadioButton_XKord
-        '
-        Me.RadioButton_XKord.AutoSize = True
-        Me.RadioButton_XKord.Location = New System.Drawing.Point(6, 42)
-        Me.RadioButton_XKord.Name = "RadioButton_XKord"
-        Me.RadioButton_XKord.Size = New System.Drawing.Size(86, 17)
-        Me.RadioButton_XKord.TabIndex = 1
-        Me.RadioButton_XKord.TabStop = True
-        Me.RadioButton_XKord.Text = "X-Koordinate"
-        Me.RadioButton_XKord.UseVisualStyleBackColor = True
+        Me.RadioButton_ZKord.AutoSize = True
+        Me.RadioButton_ZKord.Location = New System.Drawing.Point(6, 88)
+        Me.RadioButton_ZKord.Name = "RadioButton_ZKord"
+        Me.RadioButton_ZKord.Size = New System.Drawing.Size(86, 17)
+        Me.RadioButton_ZKord.TabIndex = 3
+        Me.RadioButton_ZKord.TabStop = True
+        Me.RadioButton_ZKord.Text = "Z-Koordinate"
+        Me.RadioButton_ZKord.UseVisualStyleBackColor = True
         '
         'RadioButton_YKord
         '
@@ -80,16 +69,27 @@ Partial Class Form1
         Me.RadioButton_YKord.Text = "Y-Koordinate"
         Me.RadioButton_YKord.UseVisualStyleBackColor = True
         '
-        'RadioButton_ZKord
+        'RadioButton_XKord
         '
-        Me.RadioButton_ZKord.AutoSize = True
-        Me.RadioButton_ZKord.Location = New System.Drawing.Point(6, 88)
-        Me.RadioButton_ZKord.Name = "RadioButton_ZKord"
-        Me.RadioButton_ZKord.Size = New System.Drawing.Size(86, 17)
-        Me.RadioButton_ZKord.TabIndex = 3
-        Me.RadioButton_ZKord.TabStop = True
-        Me.RadioButton_ZKord.Text = "Z-Koordinate"
-        Me.RadioButton_ZKord.UseVisualStyleBackColor = True
+        Me.RadioButton_XKord.AutoSize = True
+        Me.RadioButton_XKord.Location = New System.Drawing.Point(6, 42)
+        Me.RadioButton_XKord.Name = "RadioButton_XKord"
+        Me.RadioButton_XKord.Size = New System.Drawing.Size(86, 17)
+        Me.RadioButton_XKord.TabIndex = 1
+        Me.RadioButton_XKord.TabStop = True
+        Me.RadioButton_XKord.Text = "X-Koordinate"
+        Me.RadioButton_XKord.UseVisualStyleBackColor = True
+        '
+        'RadioButton_PunktNr
+        '
+        Me.RadioButton_PunktNr.AutoSize = True
+        Me.RadioButton_PunktNr.Location = New System.Drawing.Point(6, 19)
+        Me.RadioButton_PunktNr.Name = "RadioButton_PunktNr"
+        Me.RadioButton_PunktNr.Size = New System.Drawing.Size(70, 17)
+        Me.RadioButton_PunktNr.TabIndex = 0
+        Me.RadioButton_PunktNr.TabStop = True
+        Me.RadioButton_PunktNr.Text = "Punkt Nr."
+        Me.RadioButton_PunktNr.UseVisualStyleBackColor = True
         '
         'Button_FileOpen
         '
@@ -131,7 +131,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(420, 410)
+        Me.ClientSize = New System.Drawing.Size(259, 127)
         Me.Controls.Add(Me.Button_Exit)
         Me.Controls.Add(Me.Button_export)
         Me.Controls.Add(Me.Button_ExportFile)
