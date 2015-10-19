@@ -95,15 +95,16 @@ Partial Class Form1
         'TextBox_Result
         '
         Me.TextBox_Result.Location = New System.Drawing.Point(122, 224)
+        Me.TextBox_Result.Multiline = True
         Me.TextBox_Result.Name = "TextBox_Result"
-        Me.TextBox_Result.Size = New System.Drawing.Size(134, 20)
+        Me.TextBox_Result.Size = New System.Drawing.Size(134, 174)
         Me.TextBox_Result.TabIndex = 6
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(284, 410)
         Me.Controls.Add(Me.TextBox_Result)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button_Ende)

@@ -1,20 +1,24 @@
 ﻿Public Class Unendlich
 
     Dim Geo_Reihe As List(Of Double)
+    Public text_Form1 As TextBox
 
-    Sub New(ByRef Geo_Reihe As List(Of Double))
+    Sub New(ByRef text As TextBox)
 
         ' Dieser Aufruf ist für den Designer erforderlich.
         InitializeComponent()
 
         ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        Me.Geo_Reihe = Geo_Reihe
-
+        text_Form1 = text
     End Sub
 
 
-
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
+
+        For Each value As Double In Geo_Reihe
+            text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
+        Next
+
         Me.Close()
     End Sub
 
@@ -24,20 +28,20 @@
         End If
         Geo_Reihe = New List(Of Double)
 
-        Dim a_int As Integer = Integer.Parse(TextBox_Faktor_a.Text)
-        Dim q_int As Double = Double.Parse(TextBox_Faktor_q.Text)
+        Dim a_D As Integer = Integer.Parse(TextBox_Faktor_a.Text)
+        Dim q_D As Double = Double.Parse(TextBox_Faktor_q.Text)
         Dim Delta_d As Double = Double.Parse(TextBox_Delta.Text)
 
         Dim sn As Double = 10
         Dim i As Integer
 
         For i = 0 To 1
-            sn = a_int * (Math.Pow(q_int, i + 1) - 1) / (q_int - 1)
+            sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
             Geo_Reihe.Add(sn)
         Next
 
         Do Until Geo_Reihe(i - 1) - Geo_Reihe(i - 2) < Delta_d
-            sn = a_int * (Math.Pow(q_int, i + 1) - 1) / (q_int - 1)
+            sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
             Geo_Reihe.Add(sn)
             i += 1
         Loop
@@ -49,6 +53,7 @@
     End Sub
 
     Function isAValied() As Boolean
+        fixTextBox(TextBox_Faktor_a)
         If Not IsNumeric(TextBox_Faktor_a.Text) Then
             MsgBox("a muss eine Zahl sein")
             Return False
@@ -65,6 +70,7 @@
     End Function
 
     Function isQValied() As Boolean
+        fixTextBox(TextBox_Faktor_q)
         If Not IsNumeric(TextBox_Faktor_q.Text) Then
             MsgBox("q muss eine Zahl sein")
             Return False
@@ -74,6 +80,7 @@
     End Function
 
     Function isDeltaValied() As Boolean
+        fixTextBox(TextBox_Delta)
         If Not IsNumeric(TextBox_Delta.Text) Then
             MsgBox("Die Anzahl der Iterationen muss eine Zahl sein")
             Return False
@@ -87,5 +94,10 @@
             End If
         End If
     End Function
+
+    Sub fixTextBox(tBox As TextBox)
+        tBox.Text = tBox.Text.Replace(".", ",")
+    End Sub
+
 
 End Class
