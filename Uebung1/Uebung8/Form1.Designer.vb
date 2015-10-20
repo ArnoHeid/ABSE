@@ -22,7 +22,7 @@ Partial Class Form1
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox_Auswahl = New System.Windows.Forms.GroupBox()
         Me.RadioButton_ZKord = New System.Windows.Forms.RadioButton()
         Me.RadioButton_YKord = New System.Windows.Forms.RadioButton()
         Me.RadioButton_XKord = New System.Windows.Forms.RadioButton()
@@ -31,21 +31,22 @@ Partial Class Form1
         Me.Button_ExportFile = New System.Windows.Forms.Button()
         Me.Button_export = New System.Windows.Forms.Button()
         Me.Button_Exit = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox_Auswahl.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'GroupBox_Auswahl
         '
-        Me.GroupBox1.Controls.Add(Me.RadioButton_ZKord)
-        Me.GroupBox1.Controls.Add(Me.RadioButton_YKord)
-        Me.GroupBox1.Controls.Add(Me.RadioButton_XKord)
-        Me.GroupBox1.Controls.Add(Me.RadioButton_PunktNr)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(98, 113)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox_Auswahl.Controls.Add(Me.RadioButton_ZKord)
+        Me.GroupBox_Auswahl.Controls.Add(Me.RadioButton_YKord)
+        Me.GroupBox_Auswahl.Controls.Add(Me.RadioButton_XKord)
+        Me.GroupBox_Auswahl.Controls.Add(Me.RadioButton_PunktNr)
+        Me.GroupBox_Auswahl.Enabled = False
+        Me.GroupBox_Auswahl.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox_Auswahl.Name = "GroupBox_Auswahl"
+        Me.GroupBox_Auswahl.Size = New System.Drawing.Size(98, 113)
+        Me.GroupBox_Auswahl.TabIndex = 0
+        Me.GroupBox_Auswahl.TabStop = False
+        Me.GroupBox_Auswahl.Text = "Auswahl"
         '
         'RadioButton_ZKord
         '
@@ -102,6 +103,7 @@ Partial Class Form1
         '
         'Button_ExportFile
         '
+        Me.Button_ExportFile.Enabled = False
         Me.Button_ExportFile.Location = New System.Drawing.Point(116, 41)
         Me.Button_ExportFile.Name = "Button_ExportFile"
         Me.Button_ExportFile.Size = New System.Drawing.Size(134, 23)
@@ -111,6 +113,7 @@ Partial Class Form1
         '
         'Button_export
         '
+        Me.Button_export.Enabled = False
         Me.Button_export.Location = New System.Drawing.Point(116, 70)
         Me.Button_export.Name = "Button_export"
         Me.Button_export.Size = New System.Drawing.Size(134, 23)
@@ -136,16 +139,16 @@ Partial Class Form1
         Me.Controls.Add(Me.Button_export)
         Me.Controls.Add(Me.Button_ExportFile)
         Me.Controls.Add(Me.Button_FileOpen)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GroupBox_Auswahl)
         Me.Name = "Form1"
         Me.Text = "Form1"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GroupBox_Auswahl.ResumeLayout(False)
+        Me.GroupBox_Auswahl.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBox_Auswahl As GroupBox
     Friend WithEvents RadioButton_ZKord As RadioButton
     Friend WithEvents RadioButton_YKord As RadioButton
     Friend WithEvents RadioButton_XKord As RadioButton

@@ -25,15 +25,12 @@ Public Class Form1
                 line = sr.ReadLine()
 
                 Do Until line Is Nothing
-                    Console.WriteLine(line)
-                    line = sr.ReadLine()
 
-                    'Check Line
-                    'Fix Line
-                    If line IsNot Nothing Then
-                        Dim value_Array() As String = line.Split(" ")
+                    line = FixedLine(line) 'Fix Line mehrfach Zeichen
 
-                        'check Line
+                    Dim value_Array() As String = line.Split(" ")
+
+                    If lineIsValide(value_Array) Then 'check Line, Fehlerhafte Zeilen werden nicht eingelesen
 
                         Dim Nr As Integer = Integer.Parse(value_Array(0))
                         Dim X As Double = Double.Parse(value_Array(1))
@@ -42,12 +39,35 @@ Public Class Form1
 
                         Koord_List.Add(New Koordinaten(Nr, X, y, z))
                     End If
-
+                    line = sr.ReadLine()
                 Loop
             End Using
+
+            Button_ExportFile.Enabled = True
+            RadioButton_PunktNr.Checked = True
         End If
 
     End Sub
+
+    Private Function FixedLine(line As String) As String
+
+        line = line.Replace(vbTab, " ")
+        While line.Contains("  ")
+            line = line.Replace("  ", " ")
+        End While
+
+        Return line
+    End Function
+
+    Private Function lineIsValide(line_array() As String) As Boolean
+        If (line_array.Length <> 4) Then
+            Return False
+        End If
+        If Not IsNumeric(line_array(0)) Or Not IsNumeric(line_array(1)) Or Not IsNumeric(line_array(2)) Or Not IsNumeric(line_array(3)) Then
+            Return False
+        End If
+        Return True
+    End Function
 
     Private Sub Button_ExportFile_Click(sender As Object, e As EventArgs) Handles Button_ExportFile.Click
         Dim SaveDia As New SaveFileDialog()
@@ -60,12 +80,14 @@ Public Class Form1
 
         If SaveDia.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Export_File = SaveDia.FileName()
+            Button_export.Enabled = True
+            GroupBox_Auswahl.Enabled = True
         End If
 
     End Sub
 
     Private Sub Button_export_Click(sender As Object, e As EventArgs) Handles Button_export.Click
-        If Not (Export_File = Nothing) Then
+        If Export_File IsNot Nothing Then
 
             Using sw As StreamWriter = New StreamWriter(Export_File)
 
@@ -91,10 +113,21 @@ Public Class Form1
                     End Select
 
                     sw.WriteLine(toWrite)
-
+                    RestProg()
                 Next
+                MsgBox("Export Erfolgreich")
+                RestProg()
             End Using
+        Else
+            MsgBox("Export Datei Fehlerhaft")
         End If
+
+    End Sub
+
+    Private Sub RestProg()
+        Button_export.Enabled = False
+        Button_ExportFile.Enabled = False
+        GroupBox_Auswahl.Enabled = False
 
     End Sub
 
