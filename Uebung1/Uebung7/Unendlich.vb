@@ -10,14 +10,19 @@
 
         ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
         text_Form1 = text
+        'Me.Owner.TextBox_Result.Text
     End Sub
 
 
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
+        If Geo_Reihe IsNot Nothing Then
 
-        For Each value As Double In Geo_Reihe
-            text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
-        Next
+            For Each value As Double In Geo_Reihe
+                text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
+            Next
+
+        End If
+
 
         Me.Close()
     End Sub

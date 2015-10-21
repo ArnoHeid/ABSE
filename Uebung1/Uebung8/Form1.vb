@@ -15,9 +15,9 @@ Public Class Form1
 
 
         openFileDialog1.InitialDirectory = "c:\"
-        openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
-        openFileDialog1.FilterIndex = 2
+        openFileDialog1.Filter = "Korrdinaten files (*.kord)|*.kord"
         openFileDialog1.RestoreDirectory = True
+
 
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Using sr As StreamReader = New StreamReader(openFileDialog1.FileName())
@@ -74,9 +74,9 @@ Public Class Form1
 
 
         SaveDia.InitialDirectory = "c:\"
-        SaveDia.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
-        SaveDia.FilterIndex = 2
+        SaveDia.Filter = "Korrdinaten files (*.kord)|*.kord"
         SaveDia.RestoreDirectory = True
+        SaveDia.AddExtension = True
 
         If SaveDia.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             Export_File = SaveDia.FileName()

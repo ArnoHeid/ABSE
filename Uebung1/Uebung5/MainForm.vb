@@ -1,4 +1,6 @@
-﻿Public Class MainForm
+﻿Imports System.Text.RegularExpressions
+
+Public Class MainForm
     Private desti(11) As Ziel
 
 
@@ -49,16 +51,32 @@
         For Each ziel As Ziel In desti
             If ziel.isFitting(TextBox_Eingabe.Text) Then
                 ComboBox_Ziel.SelectedItem = ziel
+                If e.KeyCode = Keys.Enter Then
+                    TextBox_Eingabe.Text = ziel.toString
+                    GroupBox_Fahrkarte.Enabled = True
+                    GroupBox_Reis.Enabled = True
+                End If
+
                 Exit For
             End If
         Next
     End Sub
 
     Private Sub ComboBox_Ziel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_Ziel.SelectedIndexChanged
-        TextBox_Preis.Text = DirectCast(DirectCast(sender, ComboBox).SelectedItem, Ziel).getPreis(getSelectedID(GroupBox_Fahrkarte), getSelectedID(GroupBox_Reis)).ToString
-        If (ComboBox_Ziel.Focus = True) Then
-            TextBox_Eingabe.Text = DirectCast(DirectCast(sender, ComboBox).SelectedItem, Ziel).toString
-        End If
+        preisUpdate()
+    End Sub
+
+    Sub preisUpdate()
+        TextBox_Preis.Text = DirectCast(ComboBox_Ziel.SelectedItem, Ziel).getPreis(getSelectedID(GroupBox_Fahrkarte), getSelectedID(GroupBox_Reis)).ToString
+
+    End Sub
+
+
+    Private Sub ComboBox_Ziel_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBox_Ziel.SelectionChangeCommitted
+        preisUpdate()
+        TextBox_Eingabe.Text = DirectCast(DirectCast(sender, ComboBox).SelectedItem, Ziel).toString
+        GroupBox_Fahrkarte.Enabled = True
+        GroupBox_Reis.Enabled = True
     End Sub
 
     Function getSelectedID(box As GroupBox) As Integer
@@ -126,7 +144,7 @@
         Else
             Dim sonderzeichen As String = "!§$%&/()=?+,.;:_+-"
             Dim Gro_Schrei As String = "QWERTZUIOPASDFGHJKLÖÄÜYXCVBNM"
-            If TextBox_PayPal.Text = "" Or TextBox_PayPal.Text = TextBox_PayPal.AccessibleName Or Not TextBox_PayPal.Text.Contains("@") Or Not TextBox_PayPal.Text.Contains(".") Then
+            If TextBox_PayPal.Text = "" Or TextBox_PayPal.Text = TextBox_PayPal.AccessibleName Or Not IsEmail(TextBox_PayPal.Text) Then
                 MsgBox("Benutzer Name Falsch")
             ElseIf TextBox_PayPal_Pw.Text = "" Or TextBox_PayPal_Pw.Text = TextBox_PayPal_Pw.AccessibleName Or TextBox_PayPal_Pw.Text.Length < 10 Or Not isValidString(TextBox_PayPal_Pw.Text, sonderzeichen) Or Not isValidString(TextBox_PayPal_Pw.Text, Gro_Schrei) Then
                 MsgBox("Passwort Falsch")
@@ -135,6 +153,13 @@
             End If
         End If
     End Sub
+
+    Function IsEmail(ByVal email As String) As Boolean
+        Static emailExpression As New Regex("^[_a-z0-9-]+(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$")
+
+        Return emailExpression.IsMatch(email)
+    End Function
+
 
     Private Sub TextBox_PayPal_Pw_Enter(sender As Object, e As EventArgs) Handles TextBox_PayPal_Pw.Enter
         DirectCast(sender, TextBox).Text = ""
@@ -162,28 +187,49 @@
     End Function
 
     Function isValidNumber() As Boolean
-
+        Dim summe As Integer = 0
         Dim number As String = TextBox_KontNr.Text & TextBox_Check_Nr.Text
-
-        Dim sum As Integer = 0
-        Dim len = number.Length
-
+        Dim len As Integer = number.Length
         For i As Integer = 0 To len - 1
+            Dim zahl As Integer = Integer.Parse(number(len - 1 - i))
 
-            Dim add As Integer = (Integer.Parse(number(i)) - 48) * (2 - (i + len) Mod 2)
-            add -= If(add > 9, 9, 0)
-            sum += add
+            If i Mod 2 = 1 Then
+                zahl *= 2
+            End If
 
+            If zahl > 9 Then
+                zahl -= 9
+            End If
+            summe += zahl
         Next
+        If Not summe Mod 10 = 0 Then
+            Return False
+        End If
 
-        Return sum Mod 10 = 0
+        Return True
 
     End Function
 
-
+#Region "Geld button"
 
     Private Sub upDateGeld(value As Integer)
         TextBox_Geld_value.Text = TextBox_Geld_value.Text & value.ToString
+        Dim st_check() As String
+        st_check = TextBox_Geld_value.Text.Split(","c)
+        If st_check.Length = 2 Then
+            If (st_check(1).Length = 2) Then
+                Dim rueck As Double = Double.Parse(TextBox_Geld_value.Text) - Double.Parse(TextBox_Preis.Text)
+                If (rueck) >= 0 Then
+                    MsgBox("Bargeld Zahlung Erfolgreich! Rückgeld: " & rueck.ToString("f2"))
+                Else
+                    MsgBox("Nicht Genug geld Eingezahlt")
+                End If
+            End If
+        ElseIf st_check.Length > 2 Then
+            MsgBox("Geldeingabe Fehlerhaft")
+            TextBox_Geld_value.Text = ""
+        End If
+
     End Sub
 
     Private Sub Button_Geld_1_Click(sender As Object, e As EventArgs) Handles Button_Geld_1.Click
@@ -221,6 +267,7 @@
     Private Sub Button_Geld_9_Click(sender As Object, e As EventArgs) Handles Button_Geld_9.Click
         upDateGeld(9)
     End Sub
+#End Region
 
     Private Sub Button_Geld_Del_Click(sender As Object, e As EventArgs) Handles Button_Geld_Del.Click
         If TextBox_Geld_value.Text.Length > 0 Then
@@ -235,5 +282,12 @@
 
     Private Sub Button_Geld_Kom_Click(sender As Object, e As EventArgs) Handles Button_Geld_Kom.Click
         TextBox_Geld_value.Text = TextBox_Geld_value.Text & ","
+    End Sub
+
+    Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_Einfach.CheckedChanged, RadioButton_Woche.CheckedChanged, RadioButton_Tages.CheckedChanged, RadioButton_HinRueck.CheckedChanged, RadioButton_Gruppe.CheckedChanged, RadioButton_SchweBi.CheckedChanged, RadioButton_Kind.CheckedChanged, RadioButton_Hund.CheckedChanged, RadioButton_Fahrrad.CheckedChanged, RadioButton_Erwachsen.CheckedChanged, RadioButton_Azubi.CheckedChanged
+        If DirectCast(ComboBox_Ziel.SelectedItem, Ziel) IsNot Nothing Then
+            TextBox_Preis.Text = DirectCast(ComboBox_Ziel.SelectedItem, Ziel).getPreis(getSelectedID(GroupBox_Fahrkarte), getSelectedID(GroupBox_Reis)).ToString
+        End If
+
     End Sub
 End Class

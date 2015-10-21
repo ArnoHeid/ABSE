@@ -48,6 +48,7 @@ Partial Class MainForm
         Me.TextBox_PayPal_Pw = New System.Windows.Forms.TextBox()
         Me.Button_OK_Order = New System.Windows.Forms.Button()
         Me.GroupBox_geld = New System.Windows.Forms.GroupBox()
+        Me.TextBox_Geld_value = New System.Windows.Forms.TextBox()
         Me.Button_Geld_Kom = New System.Windows.Forms.Button()
         Me.Button_Geld_9 = New System.Windows.Forms.Button()
         Me.Button_Geld_6 = New System.Windows.Forms.Button()
@@ -60,7 +61,6 @@ Partial Class MainForm
         Me.Button_Geld_7 = New System.Windows.Forms.Button()
         Me.Button_Geld_4 = New System.Windows.Forms.Button()
         Me.Button_Geld_1 = New System.Windows.Forms.Button()
-        Me.TextBox_Geld_value = New System.Windows.Forms.TextBox()
         Me.GroupBox_Fahrkarte.SuspendLayout()
         Me.GroupBox_Reis.SuspendLayout()
         Me.GroupBox_geld.SuspendLayout()
@@ -124,6 +124,7 @@ Partial Class MainForm
         Me.GroupBox_Fahrkarte.Controls.Add(Me.RadioButton_Tages)
         Me.GroupBox_Fahrkarte.Controls.Add(Me.RadioButton_HinRueck)
         Me.GroupBox_Fahrkarte.Controls.Add(Me.RadioButton_Einfach)
+        Me.GroupBox_Fahrkarte.Enabled = False
         Me.GroupBox_Fahrkarte.Location = New System.Drawing.Point(12, 139)
         Me.GroupBox_Fahrkarte.Name = "GroupBox_Fahrkarte"
         Me.GroupBox_Fahrkarte.Size = New System.Drawing.Size(134, 136)
@@ -191,6 +192,7 @@ Partial Class MainForm
         Me.GroupBox_Reis.Controls.Add(Me.RadioButton_Azubi)
         Me.GroupBox_Reis.Controls.Add(Me.RadioButton_Erwachsen)
         Me.GroupBox_Reis.Controls.Add(Me.RadioButton_Kind)
+        Me.GroupBox_Reis.Enabled = False
         Me.GroupBox_Reis.Location = New System.Drawing.Point(152, 139)
         Me.GroupBox_Reis.Name = "GroupBox_Reis"
         Me.GroupBox_Reis.Size = New System.Drawing.Size(127, 161)
@@ -336,6 +338,13 @@ Partial Class MainForm
         Me.GroupBox_geld.TabStop = False
         Me.GroupBox_geld.Text = "Geldeingabe"
         '
+        'TextBox_Geld_value
+        '
+        Me.TextBox_Geld_value.Location = New System.Drawing.Point(7, 164)
+        Me.TextBox_Geld_value.Name = "TextBox_Geld_value"
+        Me.TextBox_Geld_value.Size = New System.Drawing.Size(101, 20)
+        Me.TextBox_Geld_value.TabIndex = 12
+        '
         'Button_Geld_Kom
         '
         Me.Button_Geld_Kom.Location = New System.Drawing.Point(78, 127)
@@ -443,13 +452,6 @@ Partial Class MainForm
         Me.Button_Geld_1.TabIndex = 0
         Me.Button_Geld_1.Text = "1"
         Me.Button_Geld_1.UseVisualStyleBackColor = True
-        '
-        'TextBox_Geld_value
-        '
-        Me.TextBox_Geld_value.Location = New System.Drawing.Point(7, 164)
-        Me.TextBox_Geld_value.Name = "TextBox_Geld_value"
-        Me.TextBox_Geld_value.Size = New System.Drawing.Size(101, 20)
-        Me.TextBox_Geld_value.TabIndex = 12
         '
         'MainForm
         '

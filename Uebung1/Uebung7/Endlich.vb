@@ -15,10 +15,11 @@
 
 
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
-
-        For Each value As Double In Geo_Reihe
-            text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
-        Next
+        If Geo_Reihe IsNot Nothing Then
+            For Each value As Double In Geo_Reihe
+                text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
+            Next
+        End If
 
         Me.Close()
     End Sub
