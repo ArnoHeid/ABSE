@@ -56,6 +56,9 @@
 
     Private Sub ComboBox_Ziel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_Ziel.SelectedIndexChanged
         TextBox_Preis.Text = DirectCast(DirectCast(sender, ComboBox).SelectedItem, Ziel).getPreis(getSelectedID(GroupBox_Fahrkarte), getSelectedID(GroupBox_Reis)).ToString
+        If (ComboBox_Ziel.Focus = True) Then
+            TextBox_Eingabe.Text = DirectCast(DirectCast(sender, ComboBox).SelectedItem, Ziel).toString
+        End If
     End Sub
 
     Function getSelectedID(box As GroupBox) As Integer
