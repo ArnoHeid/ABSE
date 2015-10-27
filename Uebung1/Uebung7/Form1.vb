@@ -11,10 +11,11 @@
         Geo_Reihe = New List(Of Double)
         If RadioButton_Endlich.Checked Then
             Dim Form_endlich As Endlich = New Endlich(TextBox_Result)
-            Form_endlich.Owner = Me
+            Me.AddOwnedForm(Form_endlich)
             Form_endlich.Show()
         ElseIf RadioButton_Unendlich.Checked
             Dim Form_unendlich As Unendlich = New Unendlich(TextBox_Result)
+            Form_unendlich.Owner = Me
             Form_unendlich.Show()
         End If
 

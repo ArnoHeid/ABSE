@@ -10,7 +10,7 @@
 
         ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
         text_Form1 = text
-        'Me.Owner.TextBox_Result.Text
+        'Me.Owner.
     End Sub
 
 
