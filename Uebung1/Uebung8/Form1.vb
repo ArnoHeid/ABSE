@@ -91,6 +91,8 @@ Public Class Form1
 
             Using sw As StreamWriter = New StreamWriter(Export_File)
 
+                Dim counter As Integer = 0
+
                 Dim i As Integer = getRadioIndex()
 
                 For Each Ko As Koordinaten In Koord_List
@@ -113,9 +115,10 @@ Public Class Form1
                     End Select
 
                     sw.WriteLine(toWrite)
-                    RestProg()
+                    counter += 1
+
                 Next
-                MsgBox("Export Erfolgreich")
+                MsgBox("Export Erfolgreich. " & counter.ToString & " Einträge geschrieben")
                 RestProg()
             End Using
         Else
