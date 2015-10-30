@@ -1,29 +1,6 @@
 ﻿Public Class Unendlich
 
-    Dim Geo_Reihe As List(Of Double)
-    Public text_Form1 As TextBox
-
-    Sub New(ByRef text As TextBox)
-
-        ' Dieser Aufruf ist für den Designer erforderlich.
-        InitializeComponent()
-
-        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        text_Form1 = text
-        'Me.Owner.
-    End Sub
-
-
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
-        If Geo_Reihe IsNot Nothing Then
-
-            For Each value As Double In Geo_Reihe
-                text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
-            Next
-
-        End If
-
-
         Me.Close()
     End Sub
 
@@ -31,26 +8,40 @@
         If Not isAValied() And Not isQValied() And Not isDeltaValied() Then
             Exit Sub
         End If
-        Geo_Reihe = New List(Of Double)
+        Dim Geo_Reihe = New List(Of Double)
 
-        Dim a_D As Integer = Integer.Parse(TextBox_Faktor_a.Text)
-        Dim q_D As Double = Double.Parse(TextBox_Faktor_q.Text)
-        Dim Delta_d As Double = Double.Parse(TextBox_Delta.Text)
+        Dim a_D As Integer
+        Dim q_D As Double
+        Dim Delta_d As Double
+
+        Try
+            a_D = Integer.Parse(TextBox_Faktor_a.Text)
+            q_D = Double.Parse(TextBox_Faktor_q.Text)
+            Delta_d = Double.Parse(TextBox_Delta.Text)
+        Catch ex As Exception
+            MsgBox("Fehler in der Eingabe")
+        End Try
+
 
         Dim sn As Double = 10
         Dim i As Integer
+        Try
+            For i = 0 To 1
+                sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
+                Geo_Reihe.Add(sn)
+            Next
 
-        For i = 0 To 1
-            sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
-            Geo_Reihe.Add(sn)
-        Next
+            Do Until Geo_Reihe(i - 1) - Geo_Reihe(i - 2) < Delta_d
+                sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
+                Geo_Reihe.Add(sn)
+                i += 1
+            Loop
+        Catch ex As Exception
+            MsgBox("Fehler in der Reihen beerechnung")
+        End Try
 
-        Do Until Geo_Reihe(i - 1) - Geo_Reihe(i - 2) < Delta_d
-            sn = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
-            Geo_Reihe.Add(sn)
-            i += 1
-        Loop
 
+        DirectCast(Me.Owner, Form1).setResult(Geo_Reihe)
 
         MsgBox("Fertig")
 

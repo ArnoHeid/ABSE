@@ -28,9 +28,9 @@ Public Class Form1
 
                     line = FixedLine(line) 'Fix Line mehrfach Zeichen
 
-                    Dim value_Array() As String = line.Split(" ")
+                    Dim value_Array() As String = line.Split(" "c)
 
-                    If lineIsValide(value_Array) Then 'check Line, Fehlerhafte Zeilen werden nicht eingelesen
+                    If lineIsValide(value_Array) = 3 Then 'check Line, Fehlerhafte Zeilen werden nicht eingelesen
 
                         Dim Nr As Integer = Integer.Parse(value_Array(0))
                         Dim X As Double = Double.Parse(value_Array(1))
@@ -38,6 +38,15 @@ Public Class Form1
                         Dim z As Double = Double.Parse(value_Array(3))
 
                         Koord_List.Add(New Koordinaten(Nr, X, y, z))
+
+                    ElseIf lineIsValide(value_Array) = 2 Then
+
+                        Dim Nr As Integer = Integer.Parse(value_Array(0))
+                        Dim X As Double = Double.Parse(value_Array(1))
+                        Dim y As Double = Double.Parse(value_Array(2))
+
+                        Koord_List.Add(New Koordinaten(Nr, X, y))
+                        RadioButton_ZKord.Enabled = False
                     End If
                     line = sr.ReadLine()
                 Loop
@@ -58,15 +67,29 @@ Public Class Form1
 
         Return line
     End Function
+    '1 = Fehlerhafate Zeile
+    '2 = 2D Koordinaten
+    '3 = 3D koordinaten
+    Private Function lineIsValide(line_array() As String) As Integer
+        If (line_array.Length > 4) Or (line_array.Length < 3) Then
+            Return 1
+        End If
 
-    Private Function lineIsValide(line_array() As String) As Boolean
-        If (line_array.Length <> 4) Then
-            Return False
+        If line_array.Length = 3 Then
+            If Not IsNumeric(line_array(0)) Or Not IsNumeric(line_array(1)) Or Not IsNumeric(line_array(2)) Then
+                Return 1
+            End If
+
+            Return 2
+        ElseIf line_array.Length = 4 Then
+
+            If Not IsNumeric(line_array(0)) Or Not IsNumeric(line_array(1)) Or Not IsNumeric(line_array(2)) Or Not IsNumeric(line_array(3)) Then
+                Return 1
+            End If
+            Return 3
         End If
-        If Not IsNumeric(line_array(0)) Or Not IsNumeric(line_array(1)) Or Not IsNumeric(line_array(2)) Or Not IsNumeric(line_array(3)) Then
-            Return False
-        End If
-        Return True
+        Return 1
+
     End Function
 
     Private Sub Button_ExportFile_Click(sender As Object, e As EventArgs) Handles Button_ExportFile.Click
@@ -101,16 +124,16 @@ Public Class Form1
 
                     Select Case i
                         Case 0
-                            toWrite = Ko.GetNr()
+                            toWrite = Ko.GetNr().ToString
 
                         Case 1
-                            toWrite = Ko.GetX()
+                            toWrite = Ko.GetX().ToString
 
                         Case 2
-                            toWrite = Ko.GetY()
+                            toWrite = Ko.GetY().ToString
 
                         Case Else
-                            toWrite = Ko.GetZ()
+                            toWrite = Ko.GetZ().ToString
 
                     End Select
 
@@ -131,7 +154,7 @@ Public Class Form1
         Button_export.Enabled = False
         Button_ExportFile.Enabled = False
         GroupBox_Auswahl.Enabled = False
-
+        RadioButton_ZKord.Enabled = True
     End Sub
 
     Function getRadioIndex() As Integer

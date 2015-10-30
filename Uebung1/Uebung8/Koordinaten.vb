@@ -4,6 +4,12 @@
     Private YKoordinate As Double
     Private ZKoordinate As Double
 
+    Public Sub New(nr As Integer, x As Double, y As Double)
+        KoordinatenNr = nr
+        XKoordinate = x
+        YKoordinate = y
+    End Sub
+
     Sub New(Nr As Integer, x As Double, y As Double, z As Double)
         KoordinatenNr = Nr
         XKoordinate = x

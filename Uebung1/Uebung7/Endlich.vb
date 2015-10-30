@@ -1,54 +1,48 @@
 ﻿Public Class Endlich
 
-    Dim Geo_Reihe As List(Of Double)
-    Public text_Form1 As TextBox
-
-    Sub New(text As TextBox)
-
-        ' Dieser Aufruf ist für den Designer erforderlich.
-        InitializeComponent()
-
-        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        text_Form1 = text
-
-    End Sub
-
-
     Private Sub Button_back_Click(sender As Object, e As EventArgs) Handles Button_back.Click
-        If Geo_Reihe IsNot Nothing Then
-            For Each value As Double In Geo_Reihe
-                text_Form1.Text = text_Form1.Text & value.ToString & vbCrLf
-            Next
-        End If
-
-        Me.Close()
+        Me.Visible = False
     End Sub
 
     Private Sub Button_start_Click(sender As Object, e As EventArgs) Handles Button_start.Click
         If Not isAValied() And Not isQValied() And Not isDeltaValied() Then
             Exit Sub
         End If
-        Geo_Reihe = New List(Of Double)
+        Dim Geo_Reihe = New List(Of Double)
 
-        Dim a_D As Double = Double.Parse(TextBox_Faktor_a.Text)
-        Dim q_D As Double = Double.Parse(TextBox_Faktor_q.Text)
-        Dim Iter_int As Integer = Integer.Parse(TextBox_Iteration.Text)
+        Dim a_D As Double
+        Dim q_D As Double
+        Dim Iter_int As Integer
 
-        If q_D = 1 Then
-            For i As Integer = 1 To Iter_int
-                Dim sn As Double = a_D * (i + 1)
-                Geo_Reihe.Add(sn)
-            Next
-        Else
-            For i As Integer = 0 To Integer.Parse(TextBox_Iteration.Text)
-                Dim sn As Double = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
-                Geo_Reihe.Add(sn)
-            Next
-        End If
+        Try
+            a_D = Double.Parse(TextBox_Faktor_a.Text)
+            q_D = Double.Parse(TextBox_Faktor_q.Text)
+            Iter_int = Integer.Parse(TextBox_Iteration.Text)
+
+        Catch ex As Exception
+            MsgBox("Fehler in der Eingabe")
+        End Try
+
+        Try
+            If q_D = 1 Then
+                For i As Integer = 1 To Iter_int
+                    Dim sn As Double = a_D * (i + 1)
+                    Geo_Reihe.Add(sn)
+                Next
+            Else
+                For i As Integer = 0 To Integer.Parse(TextBox_Iteration.Text)
+                    Dim sn As Double = a_D * (Math.Pow(q_D, i + 1) - 1) / (q_D - 1)
+                    Geo_Reihe.Add(sn)
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox("Fehler in der Reihen beerechnung")
+        End Try
+
+
+        DirectCast(Me.Owner, Form1).setResult(Geo_Reihe)
 
         MsgBox("Fertig")
-
-
     End Sub
 
     Function isAValied() As Boolean
