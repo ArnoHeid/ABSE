@@ -8,7 +8,7 @@ Public Class MainForm
     End Sub
 
     Private Sub ToolStripMenuItem_Show_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_Show.Click
-        If Adresse_List.Count = 0 Then
+        If Adresse_List Is Nothing And String.IsNullOrEmpty(CurrentFile) Then
             MsgBox("Keine Daten geladen")
             Exit Sub
         End If
@@ -20,6 +20,7 @@ Public Class MainForm
 
         Adresse_List.Clear()
 
+        Dim er_count As Integer = 0
         Dim openFD As New OpenFileDialog()
 
 
@@ -43,11 +44,16 @@ Public Class MainForm
                     Dim Strasse As String = value_Array(4)
                     Dim HausNr As String = value_Array(5)
 
-                    Adresse_List.Add(New Adressen(VorName, NachName, PLZ, Stadt, Strasse, HausNr))
-
+                    Dim newAdress As New Adressen(VorName, NachName, PLZ, Stadt, Strasse, HausNr)
+                    If newAdress.IsValied Then
+                        Adresse_List.Add(newAdress)
+                    End If
                     line = sr.ReadLine()
                 Loop
             End Using
+            If er_count <> 0 Then
+                MsgBox(er_count.ToString & " Fehlerhafte Einträge")
+            End If
         End If
 
         upDateDataGrid(Adresse_List)
@@ -114,9 +120,9 @@ Public Class MainForm
         Dim SearchValue As String = InputBox("Geben sie den Suchbegriff ein")
 
         If Not String.IsNullOrEmpty(SearchValue) Then
-            Dim Ad As Adressen = Adresse_List.Find(Function(x) (x.contains(SearchValue)))
+            Dim Ad As List(Of Adressen) = Adresse_List.FindAll(Function(x) (x.contains(SearchValue)))
             If Ad IsNot Nothing Then
-                MsgBox(Ad.Vorname & vbCrLf & Ad.Nachname & vbCrLf & Ad.PLZ & vbCrLf & Ad.Stadt & vbCrLf & Ad.Strasse & vbCrLf & Ad.HausNr)
+                DataGridView_Adressen.DataSource = Ad
             Else
                 MsgBox("Kein Eintrag Gefunden")
             End If

@@ -3,7 +3,7 @@
 Public Class Adressen
     Implements IComparable
     Private Shared ID_Count As Integer = 1
-
+    Private _isValied As Boolean = True
 
     Private ReadOnly _ID As Integer
     Private _Vorname As String
@@ -18,12 +18,12 @@ Public Class Adressen
     Sub New(Vorname As String, Nachname As String, PLZ As String, Stadt As String, Strasse As String, HausNr As String)
         _ID = ID_Count
         ID_Count += 1
-        _Vorname = Vorname
-        _Nachname = Nachname
-        _PLZ = PLZ
-        _Stadt = Stadt
-        _Strasse = Strasse
-        _HausNr = HausNr
+        Me.Vorname = Vorname
+        Me.Nachname = Nachname
+        Me.PLZ = PLZ
+        Me.Stadt = Stadt
+        Me.Strasse = Strasse
+        Me.HausNr = HausNr
 
     End Sub
 
@@ -39,7 +39,7 @@ Public Class Adressen
             Return _Vorname
         End Get
         Set(value As String)
-            _Vorname = value
+            _Vorname = MakeFirstBig(value)
         End Set
     End Property
 
@@ -48,7 +48,7 @@ Public Class Adressen
             Return _Nachname
         End Get
         Set(value As String)
-            _Nachname = value
+            _Nachname = MakeFirstBig(value)
         End Set
     End Property
 
@@ -57,8 +57,11 @@ Public Class Adressen
             Return _PLZ
         End Get
         Set(value As String)
-            If value.Count = 5 Then
+            If value.Count = 5 And IsNumeric(value) Then
                 _PLZ = value
+                _isValied = True
+            Else
+                _isValied = False
             End If
         End Set
     End Property
@@ -68,7 +71,7 @@ Public Class Adressen
             Return _Stadt
         End Get
         Set(value As String)
-            _Stadt = value
+            _Stadt = MakeFirstBig(value)
         End Set
     End Property
 
@@ -77,7 +80,7 @@ Public Class Adressen
             Return _Strasse
         End Get
         Set(value As String)
-            _Strasse = value
+            _Strasse = MakeFirstBig(value)
         End Set
     End Property
 
@@ -88,6 +91,18 @@ Public Class Adressen
         Set(value As String)
             _HausNr = value
         End Set
+    End Property
+
+    Public ReadOnly Property IsValied As Boolean
+        Get
+            If _isValied Then
+                Return _isValied
+            Else
+                ID_Count -= 1
+                Return _isValied
+            End If
+
+        End Get
     End Property
 
 #End Region
@@ -103,7 +118,22 @@ Public Class Adressen
     End Function
 
     Public Function contains(Value As String) As Boolean
-        Return Nachname.Contains(Value)
+        Return Nachname.Contains(Value) Or Vorname.Contains(Value)
+    End Function
+
+    Public Function MakeFirstBig(value As String) As String
+
+        If value.Length > 0 Then
+            Try
+                Return value.Substring(0, 1).ToUpper & value.Substring(1, value.Length - 1).ToLower
+            Catch ex As Exception
+                Return value
+            End Try
+
+        End If
+
+        Return value
+
     End Function
 
 End Class
