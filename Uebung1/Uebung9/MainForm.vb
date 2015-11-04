@@ -8,11 +8,12 @@ Public Class MainForm
     End Sub
 
     Private Sub ToolStripMenuItem_Show_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_Show.Click
-        If Adresse_List Is Nothing And String.IsNullOrEmpty(CurrentFile) Then
+        If String.IsNullOrEmpty(CurrentFile) Then
             MsgBox("Keine Daten geladen")
             Exit Sub
         End If
         Dim Viewer_Form As New Viewer(Adresse_List)
+        Me.AddOwnedForm(Viewer_Form)
         Viewer_Form.Show()
     End Sub
 
@@ -56,7 +57,7 @@ Public Class MainForm
             End If
         End If
 
-        upDateDataGrid(Adresse_List)
+        upDateDataGrid()
 
     End Sub
 
@@ -111,7 +112,8 @@ Public Class MainForm
         Adresse_List.Reverse()
     End Sub
 
-    Private Sub upDateDataGrid(Adresse_List As List(Of Adressen))
+    Public Sub upDateDataGrid()
+        DataGridView_Adressen.DataSource = Nothing
         DataGridView_Adressen.DataSource = Adresse_List
     End Sub
 
@@ -126,10 +128,10 @@ Public Class MainForm
             Else
                 MsgBox("Kein Eintrag Gefunden")
             End If
-
+        ElseIf SearchValue = "" Then
+            DataGridView_Adressen.DataSource = Adresse_List
         End If
 
     End Sub
-
 
 End Class

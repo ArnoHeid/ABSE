@@ -236,6 +236,7 @@ Partial Class Viewer
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Viewer"
         Me.Text = "Viewer"
         Me.ResumeLayout(False)

@@ -93,17 +93,14 @@ Public Class Adressen
         End Set
     End Property
 
-    Public ReadOnly Property IsValied As Boolean
-        Get
-            If _isValied Then
-                Return _isValied
-            Else
-                ID_Count -= 1
-                Return _isValied
-            End If
-
-        End Get
-    End Property
+    Public Function IsValied() As Boolean
+        If _isValied Then
+            Return _isValied
+        Else
+            ID_Count -= 1
+            Return _isValied
+        End If
+    End Function
 
 #End Region
 

@@ -151,4 +151,7 @@
 
     End Sub
 
+    Private Sub Viewer_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        DirectCast(Me.Owner, MainForm).upDateDataGrid()
+    End Sub
 End Class
