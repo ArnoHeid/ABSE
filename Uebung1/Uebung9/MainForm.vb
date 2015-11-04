@@ -22,6 +22,7 @@ Public Class MainForm
         Adresse_List.Clear()
 
         Dim er_count As Integer = 0
+        Dim count As Integer = 0
         Dim openFD As New OpenFileDialog()
 
 
@@ -36,6 +37,7 @@ Public Class MainForm
                 Dim line As String
                 line = sr.ReadLine()
                 Do Until line Is Nothing
+                    count += 1
                     Dim value_Array() As String = line.Split(" "c)
 
                     Dim VorName As String = value_Array(0)
@@ -50,10 +52,13 @@ Public Class MainForm
                         Adresse_List.Add(newAdress)
                     End If
                     line = sr.ReadLine()
+
+
+                    er_count += 1
                 Loop
             End Using
-            If er_count <> 0 Then
-                MsgBox(er_count.ToString & " Fehlerhafte Einträge")
+            If count - er_count <> 0 Then
+                MsgBox((count - er_count).ToString & " Fehlerhafte Einträge")
             End If
         End If
 
@@ -105,11 +110,13 @@ Public Class MainForm
 
     Private Sub ToolStripMenuItem_SortUp_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_SortUp.Click
         Adresse_List.Sort()
+        upDateDataGrid()
     End Sub
 
     Private Sub ToolStripMenuItem_SortDown_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem_SortDown.Click
         Adresse_List.Sort()
         Adresse_List.Reverse()
+        upDateDataGrid()
     End Sub
 
     Public Sub upDateDataGrid()
