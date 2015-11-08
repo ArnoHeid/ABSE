@@ -32,6 +32,8 @@ Public Class Helmert2D
     End Property
 
     Public Sub transform() Implements ITransformation.transform
-        Throw New NotImplementedException()
+
+        u_Vektor = A_Matrix.TransposeThisAndMultiply(A_Matrix).Inverse().TransposeAndMultiply(A_Matrix).Multiply(l_Vektor)
+
     End Sub
 End Class
