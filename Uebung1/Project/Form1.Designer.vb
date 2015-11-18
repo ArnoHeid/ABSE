@@ -26,33 +26,33 @@ Partial Class Form1
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÖffnenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AusgangssystemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZielsystemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HilfeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox_TransformTyp = New System.Windows.Forms.ComboBox()
+        Me.TextBox_KoordAusgang = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox_Param = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.HilfeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox_ZielSys = New System.Windows.Forms.TextBox()
+        Me.Button_Transform = New System.Windows.Forms.Button()
+        Me.Button_Report = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.ZielsystemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AusgangssystemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -68,6 +68,50 @@ Partial Class Form1
         Me.MenuStrip1.Size = New System.Drawing.Size(713, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'DateiToolStripMenuItem
+        '
+        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ÖffnenToolStripMenuItem, Me.SpeichernToolStripMenuItem, Me.BeendenToolStripMenuItem})
+        Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
+        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
+        Me.DateiToolStripMenuItem.Text = "Datei"
+        '
+        'ÖffnenToolStripMenuItem
+        '
+        Me.ÖffnenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AusgangssystemToolStripMenuItem, Me.ZielsystemToolStripMenuItem})
+        Me.ÖffnenToolStripMenuItem.Name = "ÖffnenToolStripMenuItem"
+        Me.ÖffnenToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.ÖffnenToolStripMenuItem.Text = "Öffnen"
+        '
+        'AusgangssystemToolStripMenuItem
+        '
+        Me.AusgangssystemToolStripMenuItem.Name = "AusgangssystemToolStripMenuItem"
+        Me.AusgangssystemToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AusgangssystemToolStripMenuItem.Text = "Ausgangssystem"
+        '
+        'ZielsystemToolStripMenuItem
+        '
+        Me.ZielsystemToolStripMenuItem.Name = "ZielsystemToolStripMenuItem"
+        Me.ZielsystemToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ZielsystemToolStripMenuItem.Text = "Zielsystem"
+        '
+        'SpeichernToolStripMenuItem
+        '
+        Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
+        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.SpeichernToolStripMenuItem.Text = "Speichern"
+        '
+        'BeendenToolStripMenuItem
+        '
+        Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.BeendenToolStripMenuItem.Text = "Beenden"
+        '
+        'HilfeToolStripMenuItem
+        '
+        Me.HilfeToolStripMenuItem.Name = "HilfeToolStripMenuItem"
+        Me.HilfeToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HilfeToolStripMenuItem.Text = "Hilfe"
         '
         'TableLayoutPanel1
         '
@@ -86,32 +130,6 @@ Partial Class Form1
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(689, 421)
         Me.TableLayoutPanel1.TabIndex = 1
         '
-        'DateiToolStripMenuItem
-        '
-        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ÖffnenToolStripMenuItem, Me.SpeichernToolStripMenuItem, Me.BeendenToolStripMenuItem})
-        Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
-        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
-        Me.DateiToolStripMenuItem.Text = "Datei"
-        '
-        'ÖffnenToolStripMenuItem
-        '
-        Me.ÖffnenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AusgangssystemToolStripMenuItem, Me.ZielsystemToolStripMenuItem})
-        Me.ÖffnenToolStripMenuItem.Name = "ÖffnenToolStripMenuItem"
-        Me.ÖffnenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ÖffnenToolStripMenuItem.Text = "Öffnen"
-        '
-        'SpeichernToolStripMenuItem
-        '
-        Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
-        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.SpeichernToolStripMenuItem.Text = "Speichern"
-        '
-        'BeendenToolStripMenuItem
-        '
-        Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.BeendenToolStripMenuItem.Text = "Beenden"
-        '
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -123,10 +141,10 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox1, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox1, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox_TransformTyp, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_KoordAusgang, 1, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox2, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox_Param, 1, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox3, 3, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox4, 3, 1)
@@ -135,9 +153,9 @@ Partial Class Form1
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox2, 1, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label3, 0, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 0, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox5, 1, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 2, 4)
-        Me.TableLayoutPanel2.Controls.Add(Me.Button2, 3, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_ZielSys, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button_Transform, 2, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button_Report, 3, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label8, 2, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox6, 3, 2)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
@@ -162,15 +180,24 @@ Partial Class Form1
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Transformation:"
         '
-        'ComboBox1
+        'ComboBox_TransformTyp
         '
-        Me.ComboBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(173, 3)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(164, 21)
-        Me.ComboBox1.TabIndex = 1
+        Me.ComboBox_TransformTyp.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox_TransformTyp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox_TransformTyp.FormattingEnabled = True
+        Me.ComboBox_TransformTyp.Location = New System.Drawing.Point(173, 3)
+        Me.ComboBox_TransformTyp.Name = "ComboBox_TransformTyp"
+        Me.ComboBox_TransformTyp.Size = New System.Drawing.Size(164, 21)
+        Me.ComboBox_TransformTyp.TabIndex = 1
+        '
+        'TextBox_KoordAusgang
+        '
+        Me.TextBox_KoordAusgang.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_KoordAusgang.Location = New System.Drawing.Point(173, 60)
+        Me.TextBox_KoordAusgang.Name = "TextBox_KoordAusgang"
+        Me.TextBox_KoordAusgang.ReadOnly = True
+        Me.TextBox_KoordAusgang.Size = New System.Drawing.Size(164, 20)
+        Me.TextBox_KoordAusgang.TabIndex = 4
         '
         'Label2
         '
@@ -182,43 +209,15 @@ Partial Class Form1
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Koordinaten Ausgangssystem"
         '
-        'Label3
+        'ComboBox_Param
         '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 120)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(77, 13)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Ausgabe Datei"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(173, 60)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox1.TabIndex = 4
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(173, 117)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox2.TabIndex = 5
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(173, 31)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(164, 21)
-        Me.ComboBox2.TabIndex = 6
+        Me.ComboBox_Param.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox_Param.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox_Param.FormattingEnabled = True
+        Me.ComboBox_Param.Location = New System.Drawing.Point(173, 31)
+        Me.ComboBox_Param.Name = "ComboBox_Param"
+        Me.ComboBox_Param.Size = New System.Drawing.Size(164, 21)
+        Me.ComboBox_Param.TabIndex = 6
         '
         'Label4
         '
@@ -268,31 +267,24 @@ Partial Class Form1
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "Anzahl Passpunkt"
         '
-        'Button1
+        'TextBox2
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(343, 115)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(164, 23)
-        Me.Button1.TabIndex = 12
-        Me.Button1.Text = "Transformieren"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox2.Location = New System.Drawing.Point(173, 117)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(164, 20)
+        Me.TextBox2.TabIndex = 5
         '
-        'Button2
+        'Label3
         '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.Location = New System.Drawing.Point(513, 115)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(167, 23)
-        Me.Button2.TabIndex = 13
-        Me.Button2.Text = "Report"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'HilfeToolStripMenuItem
-        '
-        Me.HilfeToolStripMenuItem.Name = "HilfeToolStripMenuItem"
-        Me.HilfeToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HilfeToolStripMenuItem.Text = "Hilfe"
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(3, 120)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(77, 13)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Ausgabe Datei"
         '
         'Label7
         '
@@ -300,18 +292,38 @@ Partial Class Form1
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(3, 91)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(77, 13)
+        Me.Label7.Size = New System.Drawing.Size(116, 13)
         Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Ausgabe Datei"
+        Me.Label7.Text = "Koordinaten Zielsystem"
         '
-        'TextBox5
+        'TextBox_ZielSys
         '
-        Me.TextBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox5.Location = New System.Drawing.Point(173, 88)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox5.TabIndex = 15
+        Me.TextBox_ZielSys.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_ZielSys.Location = New System.Drawing.Point(173, 88)
+        Me.TextBox_ZielSys.Name = "TextBox_ZielSys"
+        Me.TextBox_ZielSys.ReadOnly = True
+        Me.TextBox_ZielSys.Size = New System.Drawing.Size(164, 20)
+        Me.TextBox_ZielSys.TabIndex = 15
+        '
+        'Button_Transform
+        '
+        Me.Button_Transform.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button_Transform.Location = New System.Drawing.Point(343, 115)
+        Me.Button_Transform.Name = "Button_Transform"
+        Me.Button_Transform.Size = New System.Drawing.Size(164, 23)
+        Me.Button_Transform.TabIndex = 12
+        Me.Button_Transform.Text = "Transformieren"
+        Me.Button_Transform.UseVisualStyleBackColor = True
+        '
+        'Button_Report
+        '
+        Me.Button_Report.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button_Report.Location = New System.Drawing.Point(513, 115)
+        Me.Button_Report.Name = "Button_Report"
+        Me.Button_Report.Size = New System.Drawing.Size(167, 23)
+        Me.Button_Report.TabIndex = 13
+        Me.Button_Report.Text = "Report"
+        Me.Button_Report.UseVisualStyleBackColor = True
         '
         'Label8
         '
@@ -321,7 +333,7 @@ Partial Class Form1
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(95, 13)
         Me.Label8.TabIndex = 16
-        Me.Label8.Text = "Anzhal Neupunkte"
+        Me.Label8.Text = "Anzahl Neupunkte"
         '
         'TextBox6
         '
@@ -331,18 +343,6 @@ Partial Class Form1
         Me.TextBox6.ReadOnly = True
         Me.TextBox6.Size = New System.Drawing.Size(167, 20)
         Me.TextBox6.TabIndex = 17
-        '
-        'ZielsystemToolStripMenuItem
-        '
-        Me.ZielsystemToolStripMenuItem.Name = "ZielsystemToolStripMenuItem"
-        Me.ZielsystemToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.ZielsystemToolStripMenuItem.Text = "Zielsystem"
-        '
-        'AusgangssystemToolStripMenuItem
-        '
-        Me.AusgangssystemToolStripMenuItem.Name = "AusgangssystemToolStripMenuItem"
-        Me.AusgangssystemToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.AusgangssystemToolStripMenuItem.Text = "Ausgangssystem"
         '
         'DataGridView1
         '
@@ -388,7 +388,7 @@ Partial Class Form1
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Koordinaten Transformationen"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
@@ -408,22 +408,22 @@ Partial Class Form1
     Friend WithEvents BeendenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents Label1 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ComboBox_TransformTyp As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox_KoordAusgang As TextBox
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboBox_Param As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Button_Transform As Button
+    Friend WithEvents Button_Report As Button
     Friend WithEvents HilfeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents TextBox_ZielSys As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents AusgangssystemToolStripMenuItem As ToolStripMenuItem

@@ -7,5 +7,7 @@ Public Interface ITransformation
     Property u_Vektor As Vector(Of Double)
 
     Sub transform()
-
+    Sub generate(Ausgangssystem As Koordinaten, Zielsystem As Koordinaten)
+    Function transformPoins() As List(Of Vector(Of Double))
+    Function getStatistic() As String
 End Interface
