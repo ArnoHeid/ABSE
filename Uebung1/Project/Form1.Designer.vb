@@ -22,9 +22,6 @@ Partial Class Form1
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÖffnenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,27 +34,31 @@ Partial Class Form1
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox_TransformTyp = New System.Windows.Forms.ComboBox()
-        Me.TextBox_KoordAusgang = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.ComboBox_Param = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Typ = New System.Windows.Forms.TextBox()
+        Me.TextBox_NrPass = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox_ZielSys = New System.Windows.Forms.TextBox()
         Me.Button_Transform = New System.Windows.Forms.Button()
         Me.Button_Report = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.TextBox_NrNew = New System.Windows.Forms.TextBox()
+        Me.TextBox_KoordAusgang = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox_ZielSys = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.DataGridView_Result = New System.Windows.Forms.DataGridView()
+        Me.TabPage_Res = New System.Windows.Forms.TabPage()
+        Me.DataGridView_resi = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        CType(Me.DataGridView_Result, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage_Res.SuspendLayout()
+        CType(Me.DataGridView_resi, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -80,7 +81,7 @@ Partial Class Form1
         '
         Me.ÖffnenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AusgangssystemToolStripMenuItem, Me.ZielsystemToolStripMenuItem})
         Me.ÖffnenToolStripMenuItem.Name = "ÖffnenToolStripMenuItem"
-        Me.ÖffnenToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.ÖffnenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ÖffnenToolStripMenuItem.Text = "Öffnen"
         '
         'AusgangssystemToolStripMenuItem
@@ -98,13 +99,13 @@ Partial Class Form1
         'SpeichernToolStripMenuItem
         '
         Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
-        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SpeichernToolStripMenuItem.Text = "Speichern"
         '
         'BeendenToolStripMenuItem
         '
         Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.BeendenToolStripMenuItem.Text = "Beenden"
         '
         'HilfeToolStripMenuItem
@@ -121,7 +122,7 @@ Partial Class Form1
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.TabControl1, 0, 1)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 27)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
@@ -142,22 +143,18 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ComboBox_TransformTyp, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_KoordAusgang, 1, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox_Param, 1, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox3, 3, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox4, 3, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_Typ, 3, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_NrPass, 3, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 2, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox2, 1, 4)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label3, 0, 4)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label7, 0, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_ZielSys, 1, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.Button_Transform, 2, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Button_Report, 3, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Label8, 2, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.TextBox6, 3, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_NrNew, 3, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_KoordAusgang, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox_ZielSys, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label7, 0, 2)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 5
@@ -190,62 +187,23 @@ Partial Class Form1
         Me.ComboBox_TransformTyp.Size = New System.Drawing.Size(164, 21)
         Me.ComboBox_TransformTyp.TabIndex = 1
         '
-        'TextBox_KoordAusgang
+        'TextBox_Typ
         '
-        Me.TextBox_KoordAusgang.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox_KoordAusgang.Location = New System.Drawing.Point(173, 60)
-        Me.TextBox_KoordAusgang.Name = "TextBox_KoordAusgang"
-        Me.TextBox_KoordAusgang.ReadOnly = True
-        Me.TextBox_KoordAusgang.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox_KoordAusgang.TabIndex = 4
+        Me.TextBox_Typ.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_Typ.Location = New System.Drawing.Point(513, 4)
+        Me.TextBox_Typ.Name = "TextBox_Typ"
+        Me.TextBox_Typ.ReadOnly = True
+        Me.TextBox_Typ.Size = New System.Drawing.Size(167, 20)
+        Me.TextBox_Typ.TabIndex = 8
         '
-        'Label2
+        'TextBox_NrPass
         '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 63)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(146, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Koordinaten Ausgangssystem"
-        '
-        'ComboBox_Param
-        '
-        Me.ComboBox_Param.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox_Param.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox_Param.FormattingEnabled = True
-        Me.ComboBox_Param.Location = New System.Drawing.Point(173, 31)
-        Me.ComboBox_Param.Name = "ComboBox_Param"
-        Me.ComboBox_Param.Size = New System.Drawing.Size(164, 21)
-        Me.ComboBox_Param.TabIndex = 6
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(3, 35)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(55, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "Parameter"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.Location = New System.Drawing.Point(513, 4)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(167, 20)
-        Me.TextBox3.TabIndex = 8
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox4.Location = New System.Drawing.Point(513, 32)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(167, 20)
-        Me.TextBox4.TabIndex = 9
+        Me.TextBox_NrPass.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_NrPass.Location = New System.Drawing.Point(513, 32)
+        Me.TextBox_NrPass.Name = "TextBox_NrPass"
+        Me.TextBox_NrPass.ReadOnly = True
+        Me.TextBox_NrPass.Size = New System.Drawing.Size(167, 20)
+        Me.TextBox_NrPass.TabIndex = 9
         '
         'Label5
         '
@@ -253,9 +211,9 @@ Partial Class Form1
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(343, 7)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(85, 13)
+        Me.Label5.Size = New System.Drawing.Size(116, 13)
         Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Koordinaten Typ"
+        Me.Label5.Text = "Koordinaten Dimension"
         '
         'Label6
         '
@@ -266,44 +224,6 @@ Partial Class Form1
         Me.Label6.Size = New System.Drawing.Size(92, 13)
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "Anzahl Passpunkt"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(173, 117)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox2.TabIndex = 5
-        '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 120)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(77, 13)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Ausgabe Datei"
-        '
-        'Label7
-        '
-        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(3, 91)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(116, 13)
-        Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Koordinaten Zielsystem"
-        '
-        'TextBox_ZielSys
-        '
-        Me.TextBox_ZielSys.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox_ZielSys.Location = New System.Drawing.Point(173, 88)
-        Me.TextBox_ZielSys.Name = "TextBox_ZielSys"
-        Me.TextBox_ZielSys.ReadOnly = True
-        Me.TextBox_ZielSys.Size = New System.Drawing.Size(164, 20)
-        Me.TextBox_ZielSys.TabIndex = 15
         '
         'Button_Transform
         '
@@ -335,49 +255,109 @@ Partial Class Form1
         Me.Label8.TabIndex = 16
         Me.Label8.Text = "Anzahl Neupunkte"
         '
-        'TextBox6
+        'TextBox_NrNew
         '
-        Me.TextBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox6.Location = New System.Drawing.Point(513, 60)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.ReadOnly = True
-        Me.TextBox6.Size = New System.Drawing.Size(167, 20)
-        Me.TextBox6.TabIndex = 17
+        Me.TextBox_NrNew.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_NrNew.Location = New System.Drawing.Point(513, 60)
+        Me.TextBox_NrNew.Name = "TextBox_NrNew"
+        Me.TextBox_NrNew.ReadOnly = True
+        Me.TextBox_NrNew.Size = New System.Drawing.Size(167, 20)
+        Me.TextBox_NrNew.TabIndex = 17
         '
-        'DataGridView1
+        'TextBox_KoordAusgang
         '
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.TextBox_KoordAusgang.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_KoordAusgang.Location = New System.Drawing.Point(173, 32)
+        Me.TextBox_KoordAusgang.Name = "TextBox_KoordAusgang"
+        Me.TextBox_KoordAusgang.ReadOnly = True
+        Me.TextBox_KoordAusgang.Size = New System.Drawing.Size(164, 20)
+        Me.TextBox_KoordAusgang.TabIndex = 4
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(3, 35)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(146, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Koordinaten Ausgangssystem"
+        '
+        'TextBox_ZielSys
+        '
+        Me.TextBox_ZielSys.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox_ZielSys.Location = New System.Drawing.Point(173, 60)
+        Me.TextBox_ZielSys.Name = "TextBox_ZielSys"
+        Me.TextBox_ZielSys.ReadOnly = True
+        Me.TextBox_ZielSys.Size = New System.Drawing.Size(164, 20)
+        Me.TextBox_ZielSys.TabIndex = 15
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(3, 63)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(116, 13)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "Koordinaten Zielsystem"
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 151)
-        Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.Size = New System.Drawing.Size(683, 267)
-        Me.DataGridView1.TabIndex = 1
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage_Res)
+        Me.TabControl1.Location = New System.Drawing.Point(3, 151)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(683, 267)
+        Me.TabControl1.TabIndex = 1
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.DataGridView_Result)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(675, 241)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Neupunkt"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'DataGridView_Result
+        '
+        Me.DataGridView_Result.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView_Result.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridView_Result.Name = "DataGridView_Result"
+        Me.DataGridView_Result.Size = New System.Drawing.Size(663, 229)
+        Me.DataGridView_Result.TabIndex = 0
+        '
+        'TabPage_Res
+        '
+        Me.TabPage_Res.Controls.Add(Me.DataGridView_resi)
+        Me.TabPage_Res.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage_Res.Name = "TabPage_Res"
+        Me.TabPage_Res.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage_Res.Size = New System.Drawing.Size(675, 241)
+        Me.TabPage_Res.TabIndex = 1
+        Me.TabPage_Res.Text = "Residuen"
+        Me.TabPage_Res.UseVisualStyleBackColor = True
+        '
+        'DataGridView_resi
+        '
+        Me.DataGridView_resi.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView_resi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView_resi.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridView_resi.Name = "DataGridView_resi"
+        Me.DataGridView_resi.Size = New System.Drawing.Size(663, 229)
+        Me.DataGridView_resi.TabIndex = 0
         '
         'Form1
         '
@@ -394,7 +374,11 @@ Partial Class Form1
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        CType(Me.DataGridView_Result, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage_Res.ResumeLayout(False)
+        CType(Me.DataGridView_resi, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -410,13 +394,9 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents ComboBox_TransformTyp As ComboBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents TextBox_KoordAusgang As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents ComboBox_Param As ComboBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents TextBox_Typ As TextBox
+    Friend WithEvents TextBox_NrPass As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Button_Transform As Button
@@ -425,8 +405,12 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox_ZielSys As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents TextBox_NrNew As TextBox
     Friend WithEvents AusgangssystemToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ZielsystemToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents DataGridView_Result As DataGridView
+    Friend WithEvents TabPage_Res As TabPage
+    Friend WithEvents DataGridView_resi As DataGridView
 End Class

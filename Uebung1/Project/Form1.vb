@@ -4,6 +4,8 @@ Public Class Form1
     Private _AusgangsSystem As Koordinaten
     Private _ZielSystem As Koordinaten
     Private _Transformation As ITransformation
+    Private _ResultTable As DataTable
+
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
     End Sub
@@ -76,6 +78,7 @@ Public Class Form1
 
                 End If
 
+
             Catch ex As Exception
 
             End Try
@@ -100,13 +103,25 @@ Public Class Form1
         einlesen("Ziel")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_Transform.Click
-        If _Transformation Is Nothing Then
-            MsgBox("Keine Transformation gewählt!")
-        Else
-            _Transformation.generate(_AusgangsSystem, _ZielSystem)
-            _Transformation.transformPoins()
-        End If
+    Private Sub Button_Transform_Click(sender As Object, e As EventArgs) Handles Button_Transform.Click
+        Select Case ComboBox_TransformTyp.SelectedIndex
+            Case -1
+                MsgBox("Keine Transformation gewählt!")
+                Exit Sub
+            Case 0
+                _Transformation = New Helmert2D
+
+        End Select
+
+
+
+        _Transformation.generate(_AusgangsSystem, _ZielSystem)
+
+
+
+
+        AddToTable()
+        getInfo()
 
 
     End Sub
@@ -120,6 +135,53 @@ Public Class Form1
     End Sub
 
     Private Sub Button_Report_Click(sender As Object, e As EventArgs) Handles Button_Report.Click
-        MsgBox(_Transformation.getStatistic)
+        Try
+            MsgBox(_Transformation.getStatistic)
+
+        Catch ex As Exception
+            MsgBox("Keine Transformation durchgeführt")
+        End Try
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ComboBox_TransformTyp.Items.Add("2D - Helmert")
+
+
+        _ResultTable = New DataTable
+
+        DataGridView_Result.DataSource = _ResultTable
+
+    End Sub
+
+
+    Private Sub AddToTable()
+
+        _ResultTable.Clear()
+
+        Dim resultKo As Koordinaten = _Transformation.transformPoins()
+
+        _ResultTable.Columns.Add("Punktnummer", GetType(Double))
+        _ResultTable.Columns.Add("X-Koordinate", GetType(Double))
+        _ResultTable.Columns.Add("Y-Koordinate", GetType(Double))
+
+        If resultKo.Typ = 3 Then
+            _ResultTable.Columns.Add("Z-Koordinate", GetType(Double))
+        End If
+
+        For Each Ko As Koordinate In resultKo.KoordinatenListe
+            If resultKo.Typ = 2 Then
+                _ResultTable.Rows.Add(Ko.PunktNr, Math.Round(Ko.X, 3), Math.Round(Ko.Y, 3))
+            Else
+                _ResultTable.Rows.Add(Ko.PunktNr, Math.Round(Ko.X, 3), Math.Round(Ko.Y, 3), Math.Round(Ko.Z, 3))
+            End If
+        Next
+
+    End Sub
+
+    Private Sub getInfo()
+        TextBox_NrNew.Text = _Transformation.PointsToTransform.KoordinatenListe.Count.ToString
+        TextBox_Typ.Text = _Transformation.getTyp.ToString
+        TextBox_NrPass.Text = (_Transformation.l_Vektor.Count / 2).ToString
     End Sub
 End Class

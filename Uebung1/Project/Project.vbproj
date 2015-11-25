@@ -89,6 +89,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helmert2D.vb" />
+    <Compile Include="Helmert3D.vb" />
     <Compile Include="Koordinate.vb" />
     <Compile Include="Koordinaten.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
