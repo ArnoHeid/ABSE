@@ -8,6 +8,7 @@ Public MustInherit Class ITransformation
     Private _PointsToTransform As Koordinaten
     Private _TMatrix As Matrix(Of Double)
     Private _TVektor As Vector(Of Double)
+    Private _Passpunkte As New List(Of Integer)
 
     Public Property A_Matrix As Matrix(Of Double)
         Get
@@ -64,6 +65,15 @@ Public MustInherit Class ITransformation
         End Set
     End Property
 
+    Public Property Passpunkte As List(Of Integer)
+        Get
+            Return _Passpunkte
+        End Get
+        Set(value As List(Of Integer))
+            _Passpunkte = value
+        End Set
+    End Property
+
     Sub transform()
         u_Vektor = A_Matrix.TransposeThisAndMultiply(A_Matrix).Inverse().Multiply(A_Matrix.Transpose).Multiply(l_Vektor)
     End Sub
@@ -115,5 +125,7 @@ Public MustInherit Class ITransformation
 
         Return resultKoordinaten
     End Function
+
+    MustOverride Function getResiduen() As Koordinaten
 
 End Class

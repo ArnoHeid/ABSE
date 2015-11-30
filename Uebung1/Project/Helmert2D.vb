@@ -2,6 +2,7 @@
 Imports Project
 
 Public Class Helmert2D
+
     Inherits ITransformation
 
 
@@ -23,6 +24,7 @@ Public Class Helmert2D
             ElseIf ko.Count = 1 Then
                 ZielPass.add(ko(0))
                 AusgangPass.add(k)
+                Passpunkte.Add(k.PunktNr)
             ElseIf ko.Count = 0 Then
                 PointsToTransform.add(k)
             End If
@@ -70,7 +72,19 @@ Public Class Helmert2D
 
     End Sub
 
+    Public Overrides Function getResiduen() As Koordinaten
+        Dim Residuen As New Koordinaten(2)
+        Dim vVector As Vector(Of Double) = A_Matrix.Multiply(u_Vektor).Add(l_Vektor.Negate)
+        For i As Integer = 0 To vVector.Count - 1 Step 2
+            Residuen.add(Passpunkte(CInt(Fix(i / 2))), vVector(i), vVector(i + 1))
+        Next
+        Return Residuen
+    End Function
+
     Public Overrides Function getTyp() As Byte
         Return 2
     End Function
+
+
+
 End Class

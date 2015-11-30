@@ -7,6 +7,10 @@ Public Class Helmert3D
         Throw New NotImplementedException()
     End Sub
 
+    Public Overrides Function getResiduen() As Koordinaten
+        Throw New NotImplementedException()
+    End Function
+
     Public Overrides Function getTyp() As Byte
         Return 3
     End Function

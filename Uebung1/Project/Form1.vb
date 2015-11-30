@@ -5,6 +5,7 @@ Public Class Form1
     Private _ZielSystem As Koordinaten
     Private _Transformation As ITransformation
     Private _ResultTable As DataTable
+    Private _ResidualTable As DataTable
 
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Close()
@@ -113,12 +114,7 @@ Public Class Form1
 
         End Select
 
-
-
         _Transformation.generate(_AusgangsSystem, _ZielSystem)
-
-
-
 
         AddToTable()
         getInfo()
@@ -152,6 +148,9 @@ Public Class Form1
 
         DataGridView_Result.DataSource = _ResultTable
 
+        _ResidualTable = New DataTable
+
+        DataGridView_resi.DataSource = _ResidualTable
     End Sub
 
 
@@ -174,6 +173,24 @@ Public Class Form1
                 _ResultTable.Rows.Add(Ko.PunktNr, Math.Round(Ko.X, 3), Math.Round(Ko.Y, 3))
             Else
                 _ResultTable.Rows.Add(Ko.PunktNr, Math.Round(Ko.X, 3), Math.Round(Ko.Y, 3), Math.Round(Ko.Z, 3))
+            End If
+        Next
+
+        _ResidualTable.Columns.Add("Punktnummer", GetType(Double))
+        _ResidualTable.Columns.Add("X-Abweichung", GetType(Double))
+        _ResidualTable.Columns.Add("Y-Abweichung", GetType(Double))
+
+        If resultKo.Typ = 3 Then
+            _ResidualTable.Columns.Add("Z-Abweichung", GetType(Double))
+        End If
+
+
+        Dim residuen As Koordinaten = _Transformation.getResiduen()
+        For Each k As Koordinate In residuen.KoordinatenListe
+            If resultKo.Typ = 2 Then
+                _ResidualTable.Rows.Add(k.PunktNr, Math.Round(k.X, 3), Math.Round(k.Y, 3))
+            Else
+                _ResidualTable.Rows.Add(k.PunktNr, Math.Round(k.X, 3), Math.Round(k.Y, 3), Math.Round(k.Z, 3))
             End If
         Next
 
