@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class Form1
+Public Class MainForm
     Private _AusgangsSystem As Koordinaten
     Private _ZielSystem As Koordinaten
     Private _Transformation As ITransformation

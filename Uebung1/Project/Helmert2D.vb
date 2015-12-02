@@ -9,6 +9,7 @@ Public Class Helmert2D
     Public Overrides Sub generate(Ausgangssystem As Koordinaten, Zielsystem As Koordinaten)
         If Ausgangssystem.Typ <> 2 And Zielsystem.Typ <> 2 Then
             Throw New Exception("Koordinatensystem sind nicht gleich, oder sind keine 2D Systeme")
+            Exit Sub
         End If
 
         Dim AList As New List(Of Double())
