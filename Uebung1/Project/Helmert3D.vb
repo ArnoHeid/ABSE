@@ -4,6 +4,8 @@ Imports Project
 Public Class Helmert3D
     Inherits ITransformation
 
+    Private test As Double
+
     Public Overrides Sub generate(Ausgangssystem As Koordinaten, Zielsystem As Koordinaten)
         If Ausgangssystem.Typ <> 3 And Zielsystem.Typ <> 3 Then
             Throw New Exception("Koordinatensystem sind nicht gleich, oder sind keine 2D Systeme")
@@ -37,6 +39,7 @@ Public Class Helmert3D
         For Each k As Koordinate In PointsToTransform.KoordinatenListe
             k.X -= AusgangPass.XCenter
             k.Y -= AusgangPass.YCenter
+            k.Z -= AusgangPass.ZCenter
         Next
 
 
@@ -72,14 +75,20 @@ Public Class Helmert3D
 
         transform()
 
-        TMatrix = Matrix(Of Double).Build.DenseOfArray({{u_Vektor(0), -u_Vektor(1)}, {u_Vektor(1), u_Vektor(0)}})
+        TMatrix = Matrix(Of Double).Build.DenseOfArray({{1, u_Vektor(2), -u_Vektor(1)}, {-u_Vektor(2), 1, u_Vektor(0)}, {u_Vektor(1), -u_Vektor(0), 1}})
+        TMatrix = TMatrix.Multiply(u_Vektor(3))
 
-        TVektor = Vector(Of Double).Build.DenseOfArray({u_Vektor(2) + ZielPass.XCenter, u_Vektor(3) + ZielPass.YCenter})
+        TVektor = Vector(Of Double).Build.DenseOfArray({u_Vektor(4) + ZielPass.XCenter, u_Vektor(5) + ZielPass.YCenter, u_Vektor(6) + ZielPass.ZCenter})
 
     End Sub
 
     Public Overrides Function getResiduen() As Koordinaten
-        Throw New NotImplementedException()
+        Dim Residuen As New Koordinaten(3)
+        Dim vVector As Vector(Of Double) = A_Matrix.Multiply(u_Vektor).Add(l_Vektor.Negate)
+        For i As Integer = 0 To vVector.Count - 1 Step 3
+            Residuen.add(Passpunkte(CInt(Fix(i / 3))), vVector(i), vVector(i + 1), vVector(i + 2))
+        Next
+        Return Residuen
     End Function
 
     Public Overrides Function getTyp() As Byte

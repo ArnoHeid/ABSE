@@ -63,7 +63,7 @@ Public Class MainForm
                 ElseIf values.Length = 4 Then
 
                     kordsystem = New Koordinaten(3)
-                    Do Until sr Is Nothing
+                    Do Until line Is Nothing
                         Try
                             Dim values2() As String = line.Split(" "c)
                             Dim Nr As Integer = Integer.Parse(values2(0))
@@ -74,7 +74,7 @@ Public Class MainForm
                         Catch ex As Exception
 
                         End Try
-                        sr.ReadLine()
+                        line = sr.ReadLine()
                     Loop
 
                 End If
@@ -111,15 +111,19 @@ Public Class MainForm
                 Exit Sub
             Case 0
                 _Transformation = New Helmert2D
-
+            Case 1
+                _Transformation = New Helmert3D
         End Select
 
-        _Transformation.generate(_AusgangsSystem, _ZielSystem)
+        Try
+            _Transformation.generate(_AusgangsSystem, _ZielSystem)
 
-        AddToTable()
-        getInfo()
+            AddToTable()
+            getInfo()
 
-
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub TextBox_KoordAusgang_Click(sender As Object, e As EventArgs) Handles TextBox_KoordAusgang.Click
@@ -142,7 +146,7 @@ Public Class MainForm
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox_TransformTyp.Items.Add("2D - Helmert")
-
+        ComboBox_TransformTyp.Items.Add("3D - Helmert")
 
         _ResultTable = New DataTable
 
@@ -151,6 +155,17 @@ Public Class MainForm
         _ResidualTable = New DataTable
 
         DataGridView_resi.DataSource = _ResidualTable
+
+        _ResultTable.Columns.Add("Punktnummer", GetType(Double))
+        _ResultTable.Columns.Add("X-Koordinate", GetType(Double))
+        _ResultTable.Columns.Add("Y-Koordinate", GetType(Double))
+        _ResultTable.Columns.Add("Z-Koordinate", GetType(Double))
+
+        _ResidualTable.Columns.Add("Punktnummer", GetType(Double))
+        _ResidualTable.Columns.Add("X-Abweichung", GetType(Double))
+        _ResidualTable.Columns.Add("Y-Abweichung", GetType(Double))
+        _ResidualTable.Columns.Add("Z-Abweichung", GetType(Double))
+
     End Sub
 
 
@@ -158,15 +173,8 @@ Public Class MainForm
 
         _ResultTable.Clear()
 
+
         Dim resultKo As Koordinaten = _Transformation.transformPoins()
-
-        _ResultTable.Columns.Add("Punktnummer", GetType(Double))
-        _ResultTable.Columns.Add("X-Koordinate", GetType(Double))
-        _ResultTable.Columns.Add("Y-Koordinate", GetType(Double))
-
-        If resultKo.Typ = 3 Then
-            _ResultTable.Columns.Add("Z-Koordinate", GetType(Double))
-        End If
 
         For Each Ko As Koordinate In resultKo.KoordinatenListe
             If resultKo.Typ = 2 Then
@@ -176,13 +184,7 @@ Public Class MainForm
             End If
         Next
 
-        _ResidualTable.Columns.Add("Punktnummer", GetType(Double))
-        _ResidualTable.Columns.Add("X-Abweichung", GetType(Double))
-        _ResidualTable.Columns.Add("Y-Abweichung", GetType(Double))
 
-        If resultKo.Typ = 3 Then
-            _ResidualTable.Columns.Add("Z-Abweichung", GetType(Double))
-        End If
 
 
         Dim residuen As Koordinaten = _Transformation.getResiduen()
@@ -199,6 +201,11 @@ Public Class MainForm
     Private Sub getInfo()
         TextBox_NrNew.Text = _Transformation.PointsToTransform.KoordinatenListe.Count.ToString
         TextBox_Typ.Text = _Transformation.getTyp.ToString
-        TextBox_NrPass.Text = (_Transformation.l_Vektor.Count / 2).ToString
+        If _Transformation.getTyp.ToString = "2" Then
+            TextBox_NrPass.Text = (_Transformation.l_Vektor.Count / 2).ToString
+        ElseIf _Transformation.getTyp.ToString = "3"
+            TextBox_NrPass.Text = (_Transformation.l_Vektor.Count / 3).ToString
+        End If
+
     End Sub
 End Class
